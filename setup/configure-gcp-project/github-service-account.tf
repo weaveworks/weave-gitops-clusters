@@ -1,0 +1,41 @@
+#
+# Create a service account that can be used by a github action to push images
+# to the container registry
+#
+
+resource "google_service_account" "github_actions_service_account" {
+  account_id   = "github-actions-service"
+  display_name = "Github Actions container registry writer SA"
+  description  = "Service account for use by Github actions for writing to the weave-gitops-clusters container registry"
+}
+
+resource "google_project_iam_member" "project" {
+  project = var.project_id
+  role    = "roles/artifactregistry.writer"
+  member  = "serviceAccount:${google_service_account.github_actions_service_account.email}"
+}
+
+module "oidc" {
+  version = "v3.0.0"
+  source  = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
+
+  project_id        = var.project_id
+  pool_id           = "github-actions-sa-pool"
+  pool_display_name = "Github Actions Pool"
+  provider_id       = "github-provider"
+  # attribute_condition = "'weave-gitops-clusters' == attribute.repository"
+  sa_mapping = {
+    (google_service_account.github_actions_service_account.account_id) = {
+      sa_name   = google_service_account.github_actions_service_account.name
+      attribute = "attribute.repository/user/repo"
+    }
+  }
+}
+
+output "google_service_account_email" {
+  value = google_service_account.github_actions_service_account.email
+}
+
+output "workload_identity_provider" {
+  value = module.oidc.provider_name
+}
