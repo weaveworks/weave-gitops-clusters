@@ -27,7 +27,7 @@ module "oidc" {
   sa_mapping = {
     (google_service_account.github_actions_service_account.account_id) = {
       sa_name   = google_service_account.github_actions_service_account.name
-      attribute = "attribute.repository/user/repo"
+      attribute = "*"
     }
   }
 }
