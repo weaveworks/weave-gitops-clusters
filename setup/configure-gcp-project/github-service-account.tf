@@ -23,11 +23,13 @@ module "oidc" {
   pool_id           = "github-actions-sa-pool"
   pool_display_name = "Github Actions Pool"
   provider_id       = "github-provider"
-  # attribute_condition = "'weave-gitops-clusters' == attribute.repository"
+  # If we want to configure this with other repos we can change this to
+  # reference 'repository_owner' and add that to the attribute mapping
+  attribute_condition = "attribute.repository == 'weaveworks/weave-gitops'"
   sa_mapping = {
     (google_service_account.github_actions_service_account.account_id) = {
       sa_name   = google_service_account.github_actions_service_account.name
-      attribute = "attribute.repository/user/repo"
+      attribute = "*"
     }
   }
 }

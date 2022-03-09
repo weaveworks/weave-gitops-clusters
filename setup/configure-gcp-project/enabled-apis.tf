@@ -6,7 +6,11 @@ locals {
   enabled_apis = [
     "artifactregistry.googleapis.com", # enable docker registry
     "container.googleapis.com",        # enable kubernetes
-    "iamcredentials.googleapis.com",   # enable OIDC service accounts
+    # Required for github OIDC to work
+    "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",            # this is enabled by default, I believe
+    "iamcredentials.googleapis.com", # enable OIDC service accounts
+    "sts.googleapis.com",
   ]
 }
 
