@@ -21,6 +21,12 @@ $ terraform workspace select <worksapce-name>
 
 If you need to create a new workspace:
 
+1. Add it to `allowed_workspaces` in [`locals.tf`](locals.tf)
+2. Create it:
+    ```bash
+    $ terraform workspace new <worksapce-name>
+    ```
+
 Workspaces are currently named after the region they're deployed to. If multiple
 workspaces are needed in the same region they can be created with some suffix.
 
