@@ -2,26 +2,42 @@
 
 Pattern to produce simple [Google Kubernetes (GKE) clusters](https://cloud.google.com/kubernetes-engine).
 
+## WARNING
+
+The clusters created by this project are **not production worthy**. They create
+[zonal clusters](https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters#zonal_clusters)
+i.e. the control plane only exists in a single Google Zone, as does the nodes
+for the node pool (which, by default there is one of).
+
 ## Creates
 
 * Simple network
 * GKE cluster
 * Autoscaling node pool
-* Installs Flux
+* Installs Weave Gitops Core (via Flux)
+
+## Usage
+
+```bash
+$ make ENV=<env> tf-plan
+# ...
+$ make ENV=<env> tf-apply
+# ...
+```
+
+where `env` should match the name of the environment to be deployed and have a
+corresponding `tfvars` file in `vars/` (once you've run a make command with
+`ENV` set it should remember it by reading `.terraform/environment`).
 
 ## Workspaces
 
 This uses [Terraform Workspaces](https://www.terraform.io/language/state/workspaces#using-workspaces)
-to provide isolation between different environments. Changing workspace is
-handled by the Makefile:
+to provide isolation between different environments.
 
-```bash
-$ make ENV=us-central1 tf-apply
-```
 
 To create a new workspace run:
 ```bash
-$ make ENV=<new-workspace-name> tf-create-workspace
+$ make ENV=<new-env> tf-create-workspace
 ```
 
 You'll need to update `locals.tf`'s `allowed_workspaces` list (otherwise you'll
