@@ -1,14 +1,18 @@
-# FWIW these are in dependency order (i.e. `eksctl` depends upon `eksctl-enable-flux` etc.)
 .PHONY: default \
 				tf-apply \
 				tf-plan \
 				tf-create-workspace \
+				gke-creds \
+				flux-bootstrap \
 				help
 
 ENV?=$(shell if [ -e .terraform/environment ]; then cat .terraform/environment; else echo "europe-west1"; fi)
 
 ##@ Default
 default: tf-plan ## run tf-plan, default ENV is europe-west1
+
+##@ Helpers
+install-all: tf-apply flux-bootstrap ## One-stop installation shop
 
 ##@ Terraform setup
 .terraform/terraform.tfstate: # Download plugins, providers and check the backend
@@ -37,6 +41,18 @@ tf-plan: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Run a plan
 
 tf-apply: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Terraform apply (you'll be prompted to confirm changes)
 	terraform apply -var-file=vars/$(ENV).tfvars
+
+##@ Kubernetes
+gke-creds: ## Set kubectl credentials
+	gcloud container clusters get-credentials $(ENV)-gke
+
+##@ Flux
+flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
+	flux bootstrap github --owner=weaveworks \
+											  --repository=weave-gitops-clusters \
+											  --path=clusters/$(ENV)-gke \
+											  --branch=install-flux \
+											  --reconcile
 
 ##@ Utilities
 clean: ## Clean up
