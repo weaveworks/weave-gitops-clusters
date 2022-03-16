@@ -50,7 +50,7 @@ gke-creds: ## Set kubectl credentials
 flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 	flux bootstrap github --owner=weaveworks \
 											  --repository=weave-gitops-clusters \
-											  --path=clusters/$(ENV)-gke \
+											  --path=k8s/clusters/$(ENV)-gke \
 											  --branch=install-flux \
 											  --reconcile
 

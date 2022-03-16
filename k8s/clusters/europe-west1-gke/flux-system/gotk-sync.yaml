@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/europe-west1-gke
+  path: ./k8s/clusters/europe-west1-gke
   prune: true
   sourceRef:
     kind: GitRepository
