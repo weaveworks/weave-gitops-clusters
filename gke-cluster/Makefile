@@ -7,6 +7,7 @@
 				help
 
 ENV?=$(shell if [ -e .terraform/environment ]; then cat .terraform/environment; else echo "europe-west1"; fi)
+FLUX_BRANCH?=main
 
 ##@ Default
 default: tf-plan ## run tf-plan, default ENV is europe-west1
@@ -51,7 +52,7 @@ flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 	flux bootstrap github --owner=weaveworks \
 											  --repository=weave-gitops-clusters \
 											  --path=k8s/clusters/$(ENV)-gke \
-											  --branch=install-flux \
+											  --branch=$(FLUX_BRANCH) \
 											  --reconcile
 
 ##@ Utilities
