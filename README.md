@@ -1,6 +1,11 @@
 # weave-gitops-clusters
 Configuration for the staging k8s clusters used by weave-gitops.
 
+## WARNING
+
+The clusters created by this repo are for testing/staging purposes only. They
+are not production-worthy.
+
 ## Repo layout
 
 The bulk of the important configuration is in these two directories:
@@ -11,28 +16,16 @@ The [setup](setup/) directory contains small bits of terraform for shared resour
 (e.g. container registries, terraform state buckets). You probably don't need to
 make changes here.
 
-## Development
+## Usage
+
+Each directory contains a README describing how that section of the project
+should be deployed/used.
 
 ### Requirements
 
 * [Terraform](https://www.terraform.io/downloads)
 * [gcloud](https://cloud.google.com/sdk/docs/install)
-
-### Running (gCloud)
-
-```bash
-$ gcloud auth application-default login
-$ terraform plan  # Check the proposed changes
-$ terraform apply # Actually make stuff
-```
-
-### Running (AWS)
-
-```bash
-$ gsts --aws-role-arn=arn:aws:iam::<account-id>:role/AdministratorAccess
-$ terraform plan  # ... as before, run terraform.
-$ terraform apply
-```
+* [flux](https://fluxcd.io/)
 
 ### Pre-commit hooks [optional]
 

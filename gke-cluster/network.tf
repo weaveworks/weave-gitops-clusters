@@ -24,3 +24,16 @@ module "gcp-network" {
     ]
   }
 }
+
+module "cloud_router_nat" {
+  source  = "terraform-google-modules/cloud-router/google"
+  version = "~> 0.4"
+  project = var.project_id # Replace this with your project ID in quotes
+  name    = local.name
+  network = module.gcp-network.network_name
+  region  = var.region
+
+  nats = [{
+    name = local.name
+  }]
+}
