@@ -20,6 +20,9 @@ module "gke" {
   # You'd think this would be true by default...
   enable_private_nodes = true
 
+  # Grant service account 'artifactregistry.reader' & 'storage.objectViewer'
+  grant_registry_access = true
+
   # Node config
   node_pools = [{
     name         = "${local.name}-pool"
