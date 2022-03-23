@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: weave-gitops-app
+spec:
+  releaseName: weave-gitops-app
+  targetNamespace: default
+  chart:
+    spec:
+      chart: charts/gitops-server
+      sourceRef:
+        kind: GitRepository
+        name: weave-gitops
+        namespace: flux-system
+      version: "1.0.0"
+  interval: 10m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    image:
+      # FIXME gitops-server -> weave-gitops-app
+      repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server
+      tag: fac9aaa1c7fdfa937db6b87d3bf9517193a7671c
+    # FIXME? handle TLS @ that LB?
+    additionalArgs: ["--insecure"]
+    adminUser:
+      create: true
+      username: test-admin
+      password: some-super-secret-password
