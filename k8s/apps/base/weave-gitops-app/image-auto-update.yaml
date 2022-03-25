@@ -1,0 +1,27 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: weave-gitops-app
+  namespace: flux-system
+spec:
+  image: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server
+  interval: 5m0s
+
+---
+
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name:  weave-gitops-app
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: weave-gitops-app
+  policy:
+    numerical:
+      order: asc
+  filterTags:
+    # Match and interpret the pattern set here:
+    # https://github.com/weaveworks/weave-gitops/blob/6effbc30f134a1f6bb02344e1e71e49af53140f4/.github/workflows/pr.yaml#L167
+    pattern: '^(?P<unixtime>[0-9]*)-[0-9a-fA-F]*$'
+    extract: '$unixtime'

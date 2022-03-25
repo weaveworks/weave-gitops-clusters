@@ -50,6 +50,7 @@ gke-creds: ## Set kubectl credentials
 ##@ Flux
 flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 	flux bootstrap github --owner=weaveworks \
+												--components-extra=image-reflector-controller,image-automation-controller \
 											  --repository=weave-gitops-clusters \
 											  --path=k8s/clusters/$(ENV)-gke \
 											  --branch=$(FLUX_BRANCH) \
