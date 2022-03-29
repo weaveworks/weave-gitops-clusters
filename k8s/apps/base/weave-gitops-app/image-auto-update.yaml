@@ -25,3 +25,31 @@ spec:
     # https://github.com/weaveworks/weave-gitops/blob/6effbc30f134a1f6bb02344e1e71e49af53140f4/.github/workflows/pr.yaml#L167
     pattern: '^(?P<unixtime>[0-9]*)-[0-9a-fA-F]*$'
     extract: '$unixtime'
+
+---
+
+# This covers all imagePolicies in the namespace
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      branch: main
+  update:
+    path: ./k8s/clusters/europe-west1-gke # FIXME this should be generic
+    strategy: Setters
