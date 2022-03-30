@@ -3,3 +3,27 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+
+# Allow the image reflector to access artifact registry cf.
+# https://fluxcd.io/docs/guides/image-update/#using-native-gcp-gcr-auto-login
+patches:
+- target:
+    version: v1
+    group: apps
+    kind: Deployment
+    name: image-reflector-controller
+    namespace: flux-system
+  patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: --gcp-autologin-for-gcr
+# FIXME this patch is per cluster, we might be better off creating it in terraform
+patchesStrategicMerge:
+- |-
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: image-reflector-controller
+    namespace: flux-system
+    annotations:
+      iam.gke.io/gcp-service-account: image-rc-europe-west1-gke@weave-gitops-clusters.iam.gserviceaccount.com

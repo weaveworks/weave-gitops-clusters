@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./k8s/apps/base/gitops-server
+  path: ./k8s/apps/base/weave-gitops-app
   prune: true
   validation: client

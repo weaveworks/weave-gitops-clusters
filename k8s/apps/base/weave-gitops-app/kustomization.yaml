@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - release.yaml
+  - image-auto-update.yaml
