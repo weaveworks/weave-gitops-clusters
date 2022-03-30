@@ -5,7 +5,7 @@ metadata:
   name: weave-gitops-app
 spec:
   releaseName: weave-gitops-app
-  targetNamespace: default
+  targetNamespace: flux-system
   chart:
     spec:
       chart: charts/gitops-server
