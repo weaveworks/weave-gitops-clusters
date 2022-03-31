@@ -11,6 +11,8 @@ locals {
     "iam.googleapis.com",            # this is enabled by default, I believe
     "iamcredentials.googleapis.com", # enable OIDC service accounts
     "sts.googleapis.com",
+    # Required for identity-aware load balancers
+    "iap.googleapis.com",
   ]
 }
 
