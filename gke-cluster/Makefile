@@ -54,6 +54,7 @@ flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 											  --repository=weave-gitops-clusters \
 											  --path=k8s/clusters/$(ENV)-gke \
 											  --branch=$(FLUX_BRANCH) \
+											  --read-write-key \
 											  --reconcile
 
 ##@ Utilities
