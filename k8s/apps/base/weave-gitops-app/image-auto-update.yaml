@@ -45,11 +45,17 @@ spec:
         branch: main
     commit:
       author:
-        email: fluxcdbot@users.noreply.github.com
-        name: fluxcdbot
-      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+        name: weaveworksbot
+        email: weaveworksbot@users.noreply.github.com
+      messageTemplate: |
+        k8s/apps/base/weave-gitops-app: Automated image update
+
+        Update images in:
+        {{ range $resource, $_ := .Updated.Objects -}}
+        - {{ $resource.Kind | lower }} {{ $resource.Name | lower  }}
+        {{ end -}}
     push:
       branch: main
   update:
-    path: ./k8s/clusters/europe-west1-gke # FIXME this should be generic
+    path: ./k8s/apps/base/weave-gitops-app
     strategy: Setters
