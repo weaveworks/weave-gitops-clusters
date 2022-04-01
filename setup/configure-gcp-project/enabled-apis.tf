@@ -15,6 +15,8 @@ locals {
     "iap.googleapis.com",
     # Cloud DNS
     "dns.googleapis.com",
+    # Use KMS so we can encrypt secrets
+    "cloudkms.googleapis.com",
   ]
 }
 

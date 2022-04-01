@@ -5,14 +5,11 @@ resource "google_artifact_registry_repository" "weave_gitops" {
   project  = var.project_id
   location = "europe-west1"
 
-  repository_id = "weave-gitops"
+  repository_id = local.name
   description   = "Private repo for branch builds of the weave-gitops docker images"
   format        = "DOCKER"
 
-  labels = {
-    creator    = "sam_cook"
-    department = "engineering"
-    purpose    = "staging"
-    team       = "frostbite"
-  }
+  labels = local.common_labels
+
+  depends_on = [google_project_service.enabled]
 }
