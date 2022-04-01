@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: k8s/secrets/[-_a-zA-Z0-9]*-gke/.*
+    gcp_kms: projects/weave-gitops-clusters/locations/global/keyRings/weave-gitops/cryptoKeys/weave-gitops-sops
