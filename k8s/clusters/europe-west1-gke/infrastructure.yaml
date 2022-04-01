@@ -9,6 +9,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./k8s/infrastructure/sources
+  path: ./k8s/infrastructure
   prune: true
   validation: client

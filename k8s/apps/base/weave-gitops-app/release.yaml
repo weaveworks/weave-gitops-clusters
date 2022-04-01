@@ -28,6 +28,9 @@ spec:
       password: some-super-secret-password
     # FIXME? handle TLS @ that LB?
     additionalArgs: ["--insecure"]
+    service:
+      annotations:
+        beta.cloud.google.com/backend-config: '{"default": "config-default"}'
     # Enable ingress (we don't set a type b/c GKE magics that)
     ingress:
       enabled: true
