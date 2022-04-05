@@ -13,6 +13,8 @@ locals {
     "sts.googleapis.com",
     # Required for identity-aware load balancers
     "iap.googleapis.com",
+    # Cloud DNS
+    "dns.googleapis.com",
   ]
 }
 

@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns-controller
+spec:
+  releaseName: external-dns
+  targetNamespace: kube-system
+  chart:
+    spec:
+      chart: external-dns
+      version: "6.1.2"
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  interval: 1h0m0s
+  install:
+    remediation:
+      retries: 3
+  # Default values
+  # https://github.com/bitnami/charts/blob/master/bitnami/external-dns/values.yaml
+  # also external-dns config details:
+  # https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/gke.md#gke-with-workload-identity
+  values:
+    provider: google
+    sources: ["ingress",]
+    logFormat: json
+    google:
+      project: weave-gitops-clusters
+    securityContext:
+      fsGroup: 65534
+      runAsUser: 65534
+    serviceAccount:
+      annotations:
+        iam.gke.io/gcp-service-account: dns-europe-west1-gke@weave-gitops-clusters.iam.gserviceaccount.com
