@@ -34,6 +34,8 @@ spec:
     # Enable ingress (we don't set a type b/c GKE magics that)
     ingress:
       enabled: true
+      annotations:
+        networking.gke.io/managed-certificates: gitops-cert # must match name tls-certs.yaml
       hosts:
       - host: gitops.euw1.wego-gke.weave.works
         paths:
