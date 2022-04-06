@@ -15,6 +15,11 @@ variable "zone_id" {
   default     = "b" # Apparently europe-west1-a doesn't exist so use b which exists for both eu & us
 }
 
+variable "dns_short_name" {
+  type        = string
+  description = "Name for the hosted zone we'll create."
+}
+
 variable "subnet_config" {
   type = object({
     ip_range_base     = string

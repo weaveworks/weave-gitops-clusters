@@ -1,5 +1,8 @@
 # Creating a new cluster
 
+If you are deploying a cluster in a new GKE project you need to enable the
+[OAuth consent screen](https://cloud.google.com/iap/docs/enabling-kubernetes-howto#enabling_iap)
+and get the credentials.
 
 1. `cd` to the terrafrom directory for the type of cluster you want (gke or eks)
 2. Add a new `vars/<cluster-name>.tfvars` file and update the variables for it

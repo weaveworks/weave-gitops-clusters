@@ -1,2 +1,6 @@
 .terraform/
 *.backup
+
+# Ignore all decrypted files
+*.dec.*
+*.dec

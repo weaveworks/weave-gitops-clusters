@@ -17,6 +17,17 @@ patches:
     - op: add
       path: /spec/template/spec/containers/0/args/-
       value: --gcp-autologin-for-gcr
+- target:
+    version: v1
+    kind: ServiceAccount
+    name: kustomize-controller
+    namespace: flux-system
+  patch: |
+    kind: ServiceAccount
+    metadata:
+      name: kustomize-controller
+      annotations:
+        iam.gke.io/gcp-service-account: sops-decrypter-weave-gitops@weave-gitops-clusters.iam.gserviceaccount.com
 # FIXME this patch is per cluster, we might be better off creating it in terraform
 patchesStrategicMerge:
 - |-

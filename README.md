@@ -26,6 +26,30 @@ should be deployed/used.
 * [Terraform](https://www.terraform.io/downloads)
 * [gcloud](https://cloud.google.com/sdk/docs/install)
 * [flux](https://fluxcd.io/)
+* [sops](https://github.com/mozilla/sops)
+
+
+### Sops
+
+We use [sops](https://github.com/mozilla/sops) to encrypt secrets such that they
+can be accessed by flux and turned into kubernetes secrets in the relevant
+cluster.
+
+The `.sops.yaml` file defines creation rules that will automatically encrypt
+new files added to any directory that matches `k8s/secrets/gke-*`.
+
+It is recommended that any files you decrypt you add a `*.dec` or `*.dec.*`
+suffix to (e.g. `foo.dec.yaml`) so git will automatically ignore them.
+
+```bash
+# Create or update a secret
+$ sops k8s/secrets/gke-europe-west1/new-secret.yaml
+# Decrypt a secret to the terminal
+$ sops -d k8s/secrets/gke-europe-west1/old-secret.yaml
+# Decrypt a secret to a file
+$ sops -d k8s/secrets/gke-europe-west1/old-secret.yaml > k8s/secrets/gke-europe-west1/old-secret.dec.yaml
+```
+
 
 ### Pre-commit hooks [optional]
 

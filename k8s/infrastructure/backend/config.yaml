@@ -1,0 +1,13 @@
+#
+# Enable IAP on the load balancers in flux-system
+#
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: config-default
+  namespace: flux-system
+spec:
+  iap:
+    enabled: true
+    oauthclientCredentials:
+      secretName: iap-oauth-client

@@ -7,6 +7,7 @@ resource "google_service_account" "github_actions_service_account" {
   account_id   = "github-actions-service"
   display_name = "Github Actions container registry writer SA"
   description  = "Service account for use by Github actions for writing to the weave-gitops-clusters container registry"
+  depends_on   = [google_project_service.enabled]
 }
 
 resource "google_project_iam_member" "project" {
