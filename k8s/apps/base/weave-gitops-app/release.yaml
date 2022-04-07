@@ -21,7 +21,7 @@ spec:
     image:
       # FIXME gitops-server -> weave-gitops-app
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1649255554-85884dcd687dab5e54a09f766c25c8e6e53b8351 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1649332948-345a37d8f4e6d3cfb232cb3cf7ce4e25aafe1bad # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
@@ -39,5 +39,5 @@ spec:
       hosts:
       - host: gitops.euw1.wego-gke.weave.works
         paths:
-          - path: /*
-            pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
+        - path: /*
+          pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
