@@ -15,6 +15,8 @@ for the node pool (which, by default there is one of).
 * GKE cluster
 * Autoscaling node pool
 * Installs Weave Gitops Core (via Flux)
+* DNS hosted zone
+* Various service accounts
 
 ## Usage
 
