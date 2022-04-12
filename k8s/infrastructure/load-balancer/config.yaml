@@ -4,10 +4,18 @@
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: config-default
+  name: default-lb-backend-config
   namespace: flux-system
 spec:
   iap:
     enabled: true
     oauthclientCredentials:
       secretName: iap-oauth-client
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: default-lb-frontend-config
+spec:
+  redirectToHttps:
+    enabled: true

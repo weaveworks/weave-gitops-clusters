@@ -30,7 +30,8 @@ spec:
     additionalArgs: ["--insecure"]
     service:
       annotations:
-        beta.cloud.google.com/backend-config: '{"default": "config-default"}'
+        beta.cloud.google.com/backend-config: '{"default": "default-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: default-lb-frontend-config
     # Enable ingress (we don't set a type b/c GKE magics that)
     ingress:
       enabled: true
