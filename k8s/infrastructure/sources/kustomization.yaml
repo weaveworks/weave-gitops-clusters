@@ -4,3 +4,4 @@ namespace: flux-system
 resources:
   - weave-gitops.yaml
   - bitnami.yaml
+  - podinfo.yaml
