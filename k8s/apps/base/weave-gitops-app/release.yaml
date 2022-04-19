@@ -21,7 +21,7 @@ spec:
     image:
       # FIXME gitops-server -> weave-gitops-app
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1650385625-e4c3ff047568a6903c6b669d49bfff5a3b39db79 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1650388076-44f95682f7781da8c0219b731930f5dad416d11b # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
