@@ -25,7 +25,7 @@ spec:
     adminUser:
       create: true
       username: test-admin
-      passwordHash: $2y$10$GekpEpbZpNSBA1n1P8dQV.zMaNzlIqXKepYE2bucP.MatHqP42xvO
+      passwordHash: $2y$10$sHT5PLEDTGWSwde/DfOZveOFcjAHy5ap37s6cyV7z6i2Ca6KMygUy
     # FIXME? handle TLS @ that LB?
     additionalArgs: ["--insecure"]
     service:
