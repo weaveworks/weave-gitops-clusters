@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: weave-gitops-enterprise
+spec:
+  releaseName: weave-gitops-enterprise
+  targetNamespace: flux-system
+  chart:
+    spec:
+      chart: charts/mccp
+      sourceRef:
+        kind: GitRepository
+        name: weave-gitops-enterprise
+        namespace: flux-system
+  interval: 10m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    images:
+      eventWriter: docker.io/weaveworks/weave-gitops-enterprise-event-writer:v0.7.0-rc.2
+      clustersService: docker.io/weaveworks/weave-gitops-enterprise-clusters-service:v0.7.0-rc.2
+      uiServer: docker.io/weaveworks/weave-gitops-enterprise-ui-server:v0.7.0-rc.2
+      clusterBootstrapController: docker.io/weaveworks/cluster-bootstrap-controller:v0.0.5
+    config:
+      capi:
+        clusters:
+          namespace: flux-system
+
+    tls:
+      enabled: false
