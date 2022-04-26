@@ -8,6 +8,22 @@
 # bits in the above
 #
 
+locals {
+  # Must match the google group prefix ('@weave.works' appended inline)
+  # for team list see https://groups.google.com/all-groups?q=team
+  ww_engineering_teams = [
+    for team in [
+      "bluetonium",
+      "flux",
+      "frostbite",
+      "pesto",
+      "pitch-black",
+      "quick-silver",
+      "timber-wolf",
+    ] :
+    "team-${team}@weave.works"
+  ]
+}
 
 resource "google_iap_brand" "weave_gitops" {
   support_email     = var.oauth_support_email
@@ -15,9 +31,11 @@ resource "google_iap_brand" "weave_gitops" {
   project           = "586119081318"
 }
 
-# Grant all weave-workers (well everyone with a weave email) access to the app
-resource "google_iap_web_iam_member" "weaveworkers" {
+# Allow access to the cluster to these groups
+resource "google_iap_web_iam_member" "cluster_group_accessors" {
+  for_each = toset(local.ww_engineering_teams)
+
   project = var.project_id
   role    = "roles/iap.httpsResourceAccessor"
-  member  = "domain:weave.works"
+  member  = "group:${each.value}"
 }
