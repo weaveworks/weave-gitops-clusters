@@ -57,6 +57,12 @@ flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 											  --read-write-key \
 											  --reconcile
 
+sa-keys/enterprise-capi-$(ENV).json: tf-apply
+
+init-capi: flux-bootstrap sa-keys/enterprise-capi-$(ENV).json
+	@GCP_B64ENCODED_CREDENTIALS=$(shell cat sa-keys/enterprise-capi-$(ENV).json | tr -d '\n' ) \
+	clusterctl init --infrastructure gcp
+
 ##@ Utilities
 clean: ## Clean up
 # The .terraform directory is entirely disposable
