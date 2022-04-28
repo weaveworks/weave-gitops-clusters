@@ -4,3 +4,6 @@
 # Ignore all decrypted files
 *.dec.*
 *.dec
+
+# Ignore any local SA key files
+*/sa-keys/*
