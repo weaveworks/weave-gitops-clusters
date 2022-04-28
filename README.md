@@ -6,6 +6,19 @@ Configuration for the staging k8s clusters used by weave-gitops.
 The clusters created by this repo are for testing/staging purposes only. They
 are not production-worthy.
 
+<!--
+To update the TOC, install https://github.com/kubernetes-sigs/mdtoc
+and run: mdtoc -inplace README.md
+-->
+
+<!-- toc -->
+- [Repo layout](#repo-layout)
+- [Usage](#usage)
+  - [Tools](#tools)
+  - [Sops](#sops)
+  - [Pre-commit hooks [optional]](#pre-commit-hooks-optional)
+<!-- /toc -->
+
 ## Repo layout
 
 The bulk of the important configuration is in these two directories:

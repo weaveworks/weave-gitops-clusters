@@ -9,6 +9,23 @@ The clusters created by this project are **not production worthy**. They create
 i.e. the control plane only exists in a single Google Zone, as does the nodes
 for the node pool (which, by default there is one of).
 
+<!--
+To update the TOC, install https://github.com/kubernetes-sigs/mdtoc
+and run: mdtoc -inplace gke-cluster/README.md
+-->
+
+<!-- toc -->
+- [Creates](#creates)
+- [Usage](#usage)
+- [Workspaces](#workspaces)
+  - [Workspace naming](#workspace-naming)
+- [Notes](#notes)
+  - [Networking](#networking)
+- [Using Weave GitOps on the cluster](#using-weave-gitops-on-the-cluster)
+  - [Access](#access)
+  - [Reporting bugs found the GKE cluster](#reporting-bugs-found-the-gke-cluster)
+<!-- /toc -->
+
 ## Creates
 
 * Simple network
@@ -61,3 +78,22 @@ configurations. As part of testing the more hostile potential setups each
 workspace creates its own VPC and subnet, i.e. assumes that the management
 cluster is in an entirely separate network to its leaf cluster (this may need
 to be pushed further to a separate project).
+
+## Using Weave GitOps on the cluster
+
+### Access
+
+The Weave GitOps UI should be visible [here](gitops.euw1.wego-gke.weave.work).
+
+The username and password can be found in 1password under `wego-app-staging`.
+Contact [corp-it](https://github.com/weaveworks/corp/issues) if you do not have access to this.
+
+### Reporting bugs found the GKE cluster
+
+If you find a bug, complete **as much of the issue template as possible**.
+For the `Weave GitOps Version` field, provide the tag of the image which was
+deployed at the time you noticed the bug. This can be found in [this file](https://github.com/weaveworks/weave-gitops-clusters/blob/main/k8s/apps/base/weave-gitops-app/release.yaml)
+under `spec.chart.values.image.tag`.
+
+Logs for the `weave-gitops-app` deployment can be found [here](https://console.cloud.google.com/kubernetes/deployment/europe-west1-b/europe-west1-gke/flux-system/weave-gitops-app/logs?project=weave-gitops-clusters&pli=1).
+If you cannot see that page, contact [corp-it](https://github.com/weaveworks/corp/issues).
