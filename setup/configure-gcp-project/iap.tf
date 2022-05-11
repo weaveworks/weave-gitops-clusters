@@ -14,11 +14,13 @@ locals {
   ww_engineering_teams = [
     for team in [
       "bluetonium",
+      "denim",
       "flux",
       "frostbite",
       "pesto",
       "pitch-black",
       "quick-silver",
+      "sunglow",
       "timber-wolf",
     ] :
     "team-${team}@weave.works"
