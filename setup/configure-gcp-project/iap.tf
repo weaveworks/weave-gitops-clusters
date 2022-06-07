@@ -21,7 +21,7 @@ locals {
       "pitch-black",
       "quick-silver",
       "sunglow",
-      "team-gitops-design",
+      "gitops-design",
       "timber-wolf",
     ] :
     "team-${team}@weave.works"
