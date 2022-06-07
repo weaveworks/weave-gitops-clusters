@@ -17,11 +17,11 @@ locals {
       "denim",
       "flux",
       "frostbite",
+      "gitops-design",
       "pesto",
       "pitch-black",
       "quick-silver",
       "sunglow",
-      "gitops-design",
       "timber-wolf",
     ] :
     "team-${team}@weave.works"
