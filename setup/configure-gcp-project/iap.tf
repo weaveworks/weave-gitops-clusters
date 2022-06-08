@@ -17,6 +17,7 @@ locals {
       "denim",
       "flux",
       "frostbite",
+      "gitops-design",
       "pesto",
       "pitch-black",
       "quick-silver",
