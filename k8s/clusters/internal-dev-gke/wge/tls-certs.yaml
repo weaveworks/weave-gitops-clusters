@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: gitops-cert
+  namespace: flux-system
+spec:
+  domains:
+    - gitops.internal-dev.wego-gke.weave.works

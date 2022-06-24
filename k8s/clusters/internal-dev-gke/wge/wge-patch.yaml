@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: weave-gitops-enterprise
+spec:
+  values:
+    images:
+      clustersService: docker.io/weaveworks/weave-gitops-enterprise-clusters-service:v0.8.1
+      uiServer: docker.io/weaveworks/weave-gitops-enterprise-ui-server:v0.8.1
+      clusterBootstrapController: docker.io/weaveworks/cluster-bootstrap-controller:v0.1.0
+    service:
+      annotations:
+        beta.cloud.google.com/backend-config: '{"default": "default-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: default-lb-frontend-config
+    ingress:
+      enabled: true
+      annotations:
+        networking.gke.io/managed-certificates: gitops-cert
+      hosts:
+      - host: gitops.internal-dev.wego-gke.weave.works
+        paths:
+        - path: /*
+          pathType: ImplementationSpecific
