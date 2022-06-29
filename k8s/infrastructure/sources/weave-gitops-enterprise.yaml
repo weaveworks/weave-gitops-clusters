@@ -11,3 +11,15 @@ spec:
     branch: main
   secretRef:
     name: weave-gitops-enterprise-deploy-key
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: weave-gitops-clusters-weave-gitops-enterprise-charts
+  namespace: flux-system
+spec:
+  type: oci
+  interval: 10m
+  url: oci://europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops-enterprise/charts
+  secretRef:
+    name: weave-gitops-clusters-regcreds

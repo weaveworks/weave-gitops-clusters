@@ -5,9 +5,10 @@ module "gcp-network" {
   network_name = local.name
 
   subnets = [{
-    subnet_name   = local.name
-    subnet_region = var.region
-    subnet_ip     = var.subnet_config.ip_range_base
+    subnet_name           = local.name
+    subnet_region         = var.region
+    subnet_ip             = var.subnet_config.ip_range_base
+    subnet_private_access = true
     }
   ]
 

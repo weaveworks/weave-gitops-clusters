@@ -26,7 +26,7 @@ module "oidc" {
   provider_id       = "github-provider"
   # If we want to configure this with other repos we can change this to
   # reference 'repository_owner' and add that to the attribute mapping
-  attribute_condition = "attribute.repository == 'weaveworks/weave-gitops'"
+  attribute_condition = "attribute.repository == 'weaveworks/weave-gitops' || attribute.repository == 'weaveworks/weave-gitops-enterprise'"
   sa_mapping = {
     (google_service_account.github_actions_service_account.account_id) = {
       sa_name   = google_service_account.github_actions_service_account.name

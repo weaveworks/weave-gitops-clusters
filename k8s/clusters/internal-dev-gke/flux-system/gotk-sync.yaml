@@ -8,6 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
+    # TODO: update to main
     branch: dev-cluster
   secretRef:
     name: flux-system
