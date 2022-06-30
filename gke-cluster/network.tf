@@ -38,3 +38,20 @@ module "cloud_router_nat" {
     name = local.name
   }]
 }
+
+# Required for Istio to work on private GKE clusters
+# https://istio.io/latest/docs/setup/platform-setup/gke
+resource "google_compute_firewall" "istio" {
+  project     = var.project_id
+  name        = "gke-${module.gcp-network.network_name}-istio"
+  network     = module.gcp-network.network_name
+  description = "Allow Istio Pilot discovery validation webhook"
+  direction   = "INGRESS"
+
+  source_ranges = [module.gke.master_ipv4_cidr_block]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["15017"]
+  }
+}
