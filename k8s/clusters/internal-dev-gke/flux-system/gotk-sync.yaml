@@ -8,8 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    # TODO: update to main
-    branch: dev-cluster
+    branch: main
   secretRef:
     name: flux-system
   url: ssh://git@github.com/weaveworks/weave-gitops-clusters
