@@ -1,6 +1,7 @@
 .PHONY: default \
 				tf-apply \
 				tf-plan \
+				tf-lock \
 				tf-create-workspace \
 				gke-creds \
 				flux-bootstrap \
@@ -42,6 +43,13 @@ tf-plan: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Run a plan
 
 tf-apply: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Terraform apply (you'll be prompted to confirm changes)
 	terraform apply -var-file=vars/$(ENV).tfvars
+
+tf-lock:
+	terraform providers lock \
+		-platform=windows_amd64 \
+		-platform=darwin_amd64 \
+		-platform=darwin_arm64 \
+		-platform=linux_amd64
 
 ##@ Kubernetes
 gke-creds: ## Set kubectl credentials

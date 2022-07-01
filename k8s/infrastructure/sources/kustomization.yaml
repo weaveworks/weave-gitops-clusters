@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - bitnami.yaml
+  - flagger.yaml
+  - istio.yaml
+  - podinfo.yaml
   - weave-gitops.yaml
   - weave-gitops-enterprise.yaml
-  - podinfo.yaml

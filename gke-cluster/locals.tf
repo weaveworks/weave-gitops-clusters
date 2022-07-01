@@ -7,6 +7,7 @@ locals {
 
   # Make sure we're in a known workspace
   allowed_workspaces = {
+    internal-dev = true
     europe-west1 = true
     us-central1  = true
   }

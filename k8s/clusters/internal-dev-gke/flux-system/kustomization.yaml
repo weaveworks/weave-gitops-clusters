@@ -3,3 +3,11 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+patches:
+- patch: |-
+    - op: add
+      path: /metadata/annotations/iam.gke.io~1gcp-service-account
+      value: sops-decrypter-weave-gitops@weave-gitops-clusters.iam.gserviceaccount.com
+  target:
+    kind: ServiceAccount
+    name: kustomize-controller
