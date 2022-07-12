@@ -26,6 +26,10 @@ spec:
     provider: google
     sources: ["ingress",]
     logFormat: json
+    policy: sync # When a host is removed deleted its DNS record as well
+    # Make sure we only manage our own records
+    txtOwnerId: "euw1" # FIXME this should change per env.
+    domainFilters: ["euw1.wego-gke.weave.works"]
     google:
       project: weave-gitops-clusters
     securityContext:
