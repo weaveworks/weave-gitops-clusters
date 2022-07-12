@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dex
+resources:
+  - namespace.yaml
+  - load-balancer.yaml
+  # # - rbac.yaml
+  - release.yaml
+  - tls-cert.yaml

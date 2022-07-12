@@ -1,0 +1,63 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dex
+  namespace: dex
+spec:
+  chart:
+    spec:
+      chart: dex
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: dex
+        namespace: flux-system
+      version: 0.6.5
+  interval: 30m
+  targetNamespace: dex
+  values:
+    config:
+      # FIXME
+      issuer: https://dex.euw1.wego-gke.weave.works
+
+      # FIXME - per cluster
+      staticClients:
+      - id: weave-gitops-app
+        name: Weave Gitops
+        redirectURIs:
+        - https://gitops.euw1.wego-gke.weave.works/oauth2/callback
+        # FIXME
+        secret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk
+
+      enablePasswordDB: true
+
+      staticPasswords:
+      - email: alice@test.invalid
+        # FIXME
+        hash: $2y$10$5b/iK/HHCyYRk7S0iNaqn.mb36QbC0sSNKR5Rnhh/cITPgdviwfcu # password
+        userID: 1111240c-6f22-4da7-94e1-8d52d260f0bd
+        username: alice
+      - email: bob@test.invalid
+        # FIXME
+        hash: $2y$10$5b/iK/HHCyYRk7S0iNaqn.mb36QbC0sSNKR5Rnhh/cITPgdviwfcu # password
+        userID: fceaf51f-f8a7-4aff-809e-1b1568e96528
+        username: bob
+      storage:
+        type: memory
+      web:
+        http: 0.0.0.0:5556
+    image:
+      tag: v2.31.0
+    service:
+      annotations:
+        beta.cloud.google.com/backend-config: '{"default": "dex-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: dex-lb-frontend-config
+    ingress:
+      enabled: true
+      annotations:
+        networking.gke.io/managed-certificates: dex-cert # must match name tls-certs.yaml
+      hosts:
+      - host: dex.euw1.wego-gke.weave.works
+        paths:
+        - path: /*
+          pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
