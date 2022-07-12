@@ -3,4 +3,5 @@ kind: Kustomization
 namespace: podinfo
 resources:
   - namespace.yaml
+  - rolebindings.yaml
   - release.yaml
