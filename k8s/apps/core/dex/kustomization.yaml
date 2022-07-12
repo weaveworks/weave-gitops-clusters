@@ -4,6 +4,7 @@ namespace: dex
 resources:
   - namespace.yaml
   - load-balancer.yaml
-  # # - rbac.yaml
-  - release.yaml
   - tls-cert.yaml
+  - readonly-cluster-role.yaml
+  - rolebindings.yaml
+  - release.yaml
