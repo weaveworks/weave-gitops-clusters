@@ -6,5 +6,6 @@ resources:
   - flagger.yaml
   - istio.yaml
   - podinfo.yaml
+  - dex.yaml
   - weave-gitops.yaml
   - weave-gitops-enterprise.yaml

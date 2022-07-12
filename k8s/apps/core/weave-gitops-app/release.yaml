@@ -30,8 +30,8 @@ spec:
     additionalArgs: ["--insecure"]
     service:
       annotations:
-        beta.cloud.google.com/backend-config: '{"default": "default-lb-backend-config"}'
-        networking.gke.io/v1beta1.FrontendConfig: default-lb-frontend-config
+        beta.cloud.google.com/backend-config: '{"default": "weave-gitops-app-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: weave-gitops-app-lb-frontend-config
     # Enable ingress (we don't set a type b/c GKE magics that)
     ingress:
       enabled: true
