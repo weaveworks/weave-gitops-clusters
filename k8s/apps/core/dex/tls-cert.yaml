@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: dex-cert
+  namespace: dex
+spec:
+  domains:
+    # FIXME cluster specific
+    - dex.euw1.wego-gke.weave.works
