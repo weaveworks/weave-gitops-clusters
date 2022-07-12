@@ -31,17 +31,32 @@ spec:
 
       enablePasswordDB: true
 
+      # for name in no-permissions ns-ro ns-admin ro admin;
+      # do
+      #   htpasswd -nbBC10 ${name} "${name}-ww-sponge"
+      # done
       staticPasswords:
-      - email: alice@test.invalid
-        # FIXME
-        hash: $2y$10$5b/iK/HHCyYRk7S0iNaqn.mb36QbC0sSNKR5Rnhh/cITPgdviwfcu # password
-        userID: 1111240c-6f22-4da7-94e1-8d52d260f0bd
-        username: alice
-      - email: bob@test.invalid
-        # FIXME
-        hash: $2y$10$5b/iK/HHCyYRk7S0iNaqn.mb36QbC0sSNKR5Rnhh/cITPgdviwfcu # password
-        userID: fceaf51f-f8a7-4aff-809e-1b1568e96528
-        username: bob
+      - email: no-permissions@test.invalid
+        hash: $2y$10$EnnC2x2yAFdMZ/KgqCQse.eOSo3gxFbcT2DwQccft1QpV0LhMLkTW # no-permissions-ww-sponge
+        userID: 60858a5f-fa60-493a-9cec-197fd242f084
+        username: no-permissions
+      - email: ns-ro@test.invalid
+        hash: $2y$10$o8eSzV3NEY6915iiVfKPueFxYfVLdUavSQFBWCe0lHbaeBNQVqxVG # ns-ro-ww-sponge
+        userID: 6786a458-01c0-4434-9319-8e09ee1a7277
+        username: ns-ro
+      - email: ns-admin@test.invalid
+        hash: $2y$10$/zqvLkpvK80S3fbm7Hdoiusu3mvUeBrO8gCmO04tb1FL.ngJTxFs6 # ns-admin-ww-sponge
+        userID: 94203841-9efc-4889-9606-6e59078f8814
+        username: ns-admin
+      - email: ro@test.invalid
+        hash: $2y$10$/Zw2bjReW/9BQLrx0TIsfOEFRUhxa22X0O5Wli6YQlUlWG35iVz9O # ro-ww-sponge
+        userID: bc8a5752-9e34-4042-80a3-af1e2b542a43
+        username: ro
+      - email: admin@test.invalid
+        hash: $2y$10$NI0v3cCuCQvj3CY18/Lsr.pKAKCpoNTzTQjg60yMX1LQK.RvIbNIK # admin-ww-sponge
+        userID: f330b886-61ac-43e7-bc15-f291710f6a35
+        username: admin
+
       storage:
         type: memory
       web:
