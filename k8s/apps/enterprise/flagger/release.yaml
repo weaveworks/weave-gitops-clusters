@@ -61,6 +61,10 @@ spec:
   dependsOn:
     - name: istiod
   interval: 10m0s
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   chart:
     spec:
       chart: flagger
