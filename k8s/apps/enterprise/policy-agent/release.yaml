@@ -22,4 +22,4 @@ spec:
     crds: CreateReplace
   values:
     accountId: weaveworks
-    clusterId: internal-dev
+    clusterId: internal-dev # FIXME - per cluster

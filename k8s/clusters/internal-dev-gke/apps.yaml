@@ -17,3 +17,11 @@ spec:
   postBuild:
     substitute:
       ingress_host: gitops.internal-dev.wego-gke.weave.works
+  patches:
+    - patch: |-
+        - op: replace
+          path: /spec/values/clusterid
+          value: internal-dev
+      target:
+        kind: HelmRelease
+        name: weave-policy-agent
