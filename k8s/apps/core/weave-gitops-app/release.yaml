@@ -19,14 +19,13 @@ spec:
       retries: 3
   values:
     image:
-      # FIXME gitops-server -> weave-gitops-app
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
       tag: 1656669748-213cc5067b4d6e10ffaacfa6cda5f5adececdcd0 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
       passwordHash: $2y$10$sHT5PLEDTGWSwde/DfOZveOFcjAHy5ap37s6cyV7z6i2Ca6KMygUy
-    # FIXME? handle TLS @ that LB?
+    # FIXME use chart's OIDC secret
     additionalArgs: ["--insecure"]
     service:
       annotations:
@@ -38,7 +37,7 @@ spec:
       annotations:
         networking.gke.io/managed-certificates: gitops-cert # must match name tls-certs.yaml
       hosts:
-      - host: gitops.euw1.wego-gke.weave.works
+      - host: ${gitopsDomain}
         paths:
         - path: /*
           pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide

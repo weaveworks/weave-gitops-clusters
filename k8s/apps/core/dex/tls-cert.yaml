@@ -6,4 +6,4 @@ metadata:
 spec:
   domains:
     # FIXME cluster specific
-    - dex.euw1.wego-gke.weave.works
+    - ${dexDomain}

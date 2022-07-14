@@ -5,5 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   domains:
-    # FIXME cluster specific
-    - gitops.euw1.wego-gke.weave.works
+    - ${gitopsDomain}

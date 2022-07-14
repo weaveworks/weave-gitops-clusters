@@ -4,4 +4,4 @@ metadata:
   name: ${cert_name:=gitops-cert}
 spec:
   domains:
-    - ${ingress_host:=gitops.euw1.wego-gke.weave.works}
+    - ${gitopsDomain}

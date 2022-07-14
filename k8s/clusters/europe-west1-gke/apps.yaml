@@ -14,3 +14,8 @@ spec:
   path: ./k8s/apps/core
   prune: true
   validation: client
+  postBuild:
+    substitute:
+      apexDomain: euw1.wego-gke.weave.works
+      dexDomain: dex.euw1.wego-gke.weave.works
+      gitopsDomain: gitops.euw1.wego-gke.weave.works
