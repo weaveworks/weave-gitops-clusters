@@ -26,6 +26,7 @@ spec:
       create: true
       username: test-admin
       passwordHash: $2y$10$sHT5PLEDTGWSwde/DfOZveOFcjAHy5ap37s6cyV7z6i2Ca6KMygUy
+    # FIXME use chart's OIDC secret
     # FIXME? handle TLS @ that LB?
     additionalArgs: ["--insecure"]
     service:
@@ -38,7 +39,7 @@ spec:
       annotations:
         networking.gke.io/managed-certificates: gitops-cert # must match name tls-certs.yaml
       hosts:
-      - host: gitops.euw1.wego-gke.weave.works
+      - host: ${gitopsDomain}
         paths:
         - path: /*
           pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide

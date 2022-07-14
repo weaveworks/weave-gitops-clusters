@@ -27,7 +27,7 @@ spec:
       annotations:
         networking.gke.io/managed-certificates: ${cert_name:=gitops-cert}
       hosts:
-      - host: ${ingress_host:=gitops.euw1.wego-gke.weave.works}
+      - host: ${gitopsDomain}
         paths:
         - path: /*
           pathType: ImplementationSpecific

@@ -18,14 +18,14 @@ spec:
   values:
     config:
       # FIXME
-      issuer: https://dex.euw1.wego-gke.weave.works
+      issuer: https://${dexDomain}
 
       # FIXME - per cluster
       staticClients:
       - id: weave-gitops-app
         name: Weave Gitops
         redirectURIs:
-        - https://gitops.euw1.wego-gke.weave.works/oauth2/callback
+        - https://${gitopsDomain}/oauth2/callback
         # FIXME
         secret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk
 
@@ -72,7 +72,7 @@ spec:
       annotations:
         networking.gke.io/managed-certificates: dex-cert # must match name tls-certs.yaml
       hosts:
-      - host: dex.euw1.wego-gke.weave.works
+      - host: ${dexDomain}
         paths:
         - path: /*
           pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide

@@ -28,8 +28,8 @@ spec:
     logFormat: json
     policy: sync # When a host is removed deleted its DNS record as well
     # Make sure we only manage our own records
-    txtOwnerId: "euw1" # FIXME this should change per env.
-    domainFilters: ["euw1.wego-gke.weave.works"]
+    txtOwnerId: "${txtOwnerId}" # FIXME this should change per env.
+    domainFilters: ["${apexDomain}"]
     google:
       project: weave-gitops-clusters
     securityContext:
@@ -37,4 +37,4 @@ spec:
       runAsUser: 65534
     serviceAccount:
       annotations:
-        iam.gke.io/gcp-service-account: dns-europe-west1-gke@weave-gitops-clusters.iam.gserviceaccount.com
+        iam.gke.io/gcp-service-account: ${externalDnsSa}

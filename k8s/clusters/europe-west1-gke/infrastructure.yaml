@@ -15,3 +15,8 @@ spec:
   path: ./k8s/infrastructure
   prune: true
   validation: client
+  postBuild:
+    substitute:
+      apexDomain: euw1.wego-gke.weave.works
+      txtOwnerId: euw1
+      externalDnsSa:  dns-europe-west1-gke@weave-gitops-clusters.iam.gserviceaccount.com
