@@ -4,7 +4,7 @@
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: default-lb-backend-config
+  name: weave-gitops-app-lb-backend-config
   namespace: flux-system
 spec:
   iap:
@@ -15,7 +15,7 @@ spec:
 apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
-  name: default-lb-frontend-config
+  name: weave-gitops-app-lb-frontend-config
 spec:
   redirectToHttps:
     enabled: true

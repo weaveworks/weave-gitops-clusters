@@ -1,7 +1,9 @@
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: ${cert_name:=gitops-cert}
+  name: dex-cert
+  namespace: dex
 spec:
   domains:
-    - ${gitopsDomain}
+    # FIXME cluster specific
+    - ${dexDomain}
