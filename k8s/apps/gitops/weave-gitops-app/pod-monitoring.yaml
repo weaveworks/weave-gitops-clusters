@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: weave-gitops-app
+      app.kubernetes.io/name: weave-gitops
   endpoints:
   - port: http-metrics
     interval: 30s
