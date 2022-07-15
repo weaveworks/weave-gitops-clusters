@@ -1,0 +1,12 @@
+---
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: weave-gitops-app
+spec:
+  selector:
+    matchLabels:
+      name: weave-gitops-app
+  endpoints:
+  - port: http-metrics
+    interval: 30s

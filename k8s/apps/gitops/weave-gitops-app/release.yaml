@@ -46,3 +46,5 @@ spec:
         paths:
         - path: /*
           pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
+    metrics:
+      enabled: true
