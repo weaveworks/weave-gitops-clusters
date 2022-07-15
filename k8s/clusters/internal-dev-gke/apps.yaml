@@ -16,4 +16,6 @@ spec:
   validation: client
   postBuild:
     substitute:
-      ingress_host: gitops.internal-dev.wego-gke.weave.works
+      apexDomain: dev-internal.wego-gke.weave.works
+      dexDomain: dex.dev-internal.wego-gke.weave.works
+      gitopsDomain: gitops.dev-internal.wego-gke.weave.works

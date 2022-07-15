@@ -1,0 +1,75 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dex
+  namespace: dex
+spec:
+  chart:
+    spec:
+      chart: dex
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: dex
+        namespace: flux-system
+      version: 0.6.5
+  interval: 30m
+  targetNamespace: dex
+  values:
+    config:
+      issuer: https://${dexDomain}
+
+      staticClients:
+      - id: weave-gitops-app
+        name: Weave Gitops
+        redirectURIs:
+        - https://${gitopsDomain}/oauth2/callback
+        secret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk
+
+      enablePasswordDB: true
+
+      # for name in no-permissions ns-ro ns-admin ro admin;
+      # do
+      #   htpasswd -nbBC10 ${name} "${name}-ww-sponge"
+      # done
+      staticPasswords:
+      - email: no-permissions@test.invalid
+        hash: $2y$10$EnnC2x2yAFdMZ/KgqCQse.eOSo3gxFbcT2DwQccft1QpV0LhMLkTW # no-permissions-ww-sponge
+        userID: 60858a5f-fa60-493a-9cec-197fd242f084
+        username: no-permissions
+      - email: ns-ro@test.invalid
+        hash: $2y$10$o8eSzV3NEY6915iiVfKPueFxYfVLdUavSQFBWCe0lHbaeBNQVqxVG # ns-ro-ww-sponge
+        userID: 6786a458-01c0-4434-9319-8e09ee1a7277
+        username: ns-ro
+      - email: ns-admin@test.invalid
+        hash: $2y$10$/zqvLkpvK80S3fbm7Hdoiusu3mvUeBrO8gCmO04tb1FL.ngJTxFs6 # ns-admin-ww-sponge
+        userID: 94203841-9efc-4889-9606-6e59078f8814
+        username: ns-admin
+      - email: ro@test.invalid
+        hash: $2y$10$/Zw2bjReW/9BQLrx0TIsfOEFRUhxa22X0O5Wli6YQlUlWG35iVz9O # ro-ww-sponge
+        userID: bc8a5752-9e34-4042-80a3-af1e2b542a43
+        username: ro
+      - email: admin@test.invalid
+        hash: $2y$10$NI0v3cCuCQvj3CY18/Lsr.pKAKCpoNTzTQjg60yMX1LQK.RvIbNIK # admin-ww-sponge
+        userID: f330b886-61ac-43e7-bc15-f291710f6a35
+        username: admin
+
+      storage:
+        type: memory
+      web:
+        http: 0.0.0.0:5556
+    image:
+      tag: v2.31.0
+    service:
+      annotations:
+        beta.cloud.google.com/backend-config: '{"default": "dex-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: dex-lb-frontend-config
+    ingress:
+      enabled: true
+      annotations:
+        networking.gke.io/managed-certificates: dex-cert # must match name tls-certs.yaml
+      hosts:
+      - host: ${dexDomain}
+        paths:
+        - path: /*
+          pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide

@@ -14,3 +14,32 @@ spec:
   path: ./k8s/apps/core
   prune: true
   validation: client
+  postBuild:
+    substitute:
+      apexDomain: euw1.wego-gke.weave.works
+      dexDomain: dex.euw1.wego-gke.weave.works
+      # Gitops domain is needed to configure dex callbacks
+      gitopsDomain: gitops.euw1.wego-gke.weave.works
+      dexSecret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps-gitops
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: apps-core
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/apps/gitops
+  prune: true
+  validation: client
+  postBuild:
+    substitute:
+      apexDomain: euw1.wego-gke.weave.works
+      dexDomain: dex.euw1.wego-gke.weave.works
+      gitopsDomain: gitops.euw1.wego-gke.weave.works
+      dexSecret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk

@@ -27,7 +27,6 @@ and get the credentials.
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --gcp-autologin-for-gcr
-      # FIXME this patch is per cluster, we might be better off creating it in terraform
       patchesStrategicMerge:
       - |-
         apiVersion: v1

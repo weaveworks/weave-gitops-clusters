@@ -5,6 +5,7 @@ resources:
   - bitnami.yaml
   - flagger.yaml
   - istio.yaml
-  - podinfo.yaml
+  - dex.yaml
   - weave-gitops.yaml
   - weave-gitops-enterprise.yaml
+  # - podinfo.yaml # this source is in k8s/apps/gitops/podinfo so the ns-admin user can be demonstrated with some permissions

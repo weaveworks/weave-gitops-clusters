@@ -20,14 +20,14 @@ spec:
   values:
     service:
       annotations:
-        beta.cloud.google.com/backend-config: '{"default": "default-lb-backend-config"}'
-        networking.gke.io/v1beta1.FrontendConfig: default-lb-frontend-config
+        beta.cloud.google.com/backend-config: '{"default": "enterprise-lb-backend-config"}'
+        networking.gke.io/v1beta1.FrontendConfig: enterprise-lb-frontend-config
     ingress:
       enabled: true
       annotations:
         networking.gke.io/managed-certificates: ${cert_name:=gitops-cert}
       hosts:
-      - host: ${ingress_host:=gitops.euw1.wego-gke.weave.works}
+      - host: ${gitopsDomain}
         paths:
         - path: /*
           pathType: ImplementationSpecific

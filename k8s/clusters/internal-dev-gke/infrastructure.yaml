@@ -15,11 +15,8 @@ spec:
   path: ./k8s/infrastructure
   prune: true
   validation: client
-  patches:
-    - patch: |-
-        - op: replace
-          path: /spec/values/serviceAccount/annotations/iam.gke.io~1gcp-service-account
-          value: dns-internal-dev-gke@weave-gitops-clusters.iam.gserviceaccount.com
-      target:
-        kind: HelmRelease
-        name: external-dns-controller
+  postBuild:
+    substitute:
+      apexDomain: dev-internal.wego-gke.weave.works
+      txtOwnerId: dev-internal
+      externalDnsSa: dns-internal-dev-gke@weave-gitops-clusters.iam.gserviceaccount.com

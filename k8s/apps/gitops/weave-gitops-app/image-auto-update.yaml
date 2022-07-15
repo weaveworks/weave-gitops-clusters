@@ -57,5 +57,5 @@ spec:
     push:
       branch: main
   update:
-    path: ./k8s/apps/base/weave-gitops-app
+    path: ./k8s/apps/gitops/weave-gitops-app
     strategy: Setters
