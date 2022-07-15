@@ -16,6 +16,7 @@ apiVersion: networking.gke.io/v1beta1
 kind: FrontendConfig
 metadata:
   name: enterprise-lb-frontend-config
+  namespace: flux-system
 spec:
   redirectToHttps:
     enabled: true

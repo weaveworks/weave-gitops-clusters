@@ -38,5 +38,10 @@ spec:
       capi:
         clusters:
           namespace: flux-system
+      oidc:
+        enabled: true
+        issuerURL: https://${dexDomain}
+        redirectURL: https://${gitopsDomain}/oauth2/callback
+        clientCredentialsSecret: oidc-auth
     tls:
       enabled: false

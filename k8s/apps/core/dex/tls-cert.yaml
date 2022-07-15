@@ -5,5 +5,4 @@ metadata:
   namespace: dex
 spec:
   domains:
-    # FIXME cluster specific
     - ${dexDomain}

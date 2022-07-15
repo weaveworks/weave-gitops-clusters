@@ -16,6 +16,7 @@ spec:
   validation: client
   postBuild:
     substitute:
+      dexClientId: weave-gitops-enterprise
       dexDomain: dex.internal-dev.wego-gke.weave.works
       gitopsDomain: gitops.internal-dev.wego-gke.weave.works
       # dexSecret: B7Skl2cfSoOQgOhIkeqxx1uJjWxjCFoEEymk
@@ -37,7 +38,8 @@ spec:
   validation: client
   postBuild:
     substitute:
-      # dexDomain: dex.internal-dev.wego-gke.weave.works
+      dexClientId: weave-gitops-enterprise
+      dexDomain: dex.internal-dev.wego-gke.weave.works
       gitopsDomain: gitops.internal-dev.wego-gke.weave.works
   patches:
     - patch: |-

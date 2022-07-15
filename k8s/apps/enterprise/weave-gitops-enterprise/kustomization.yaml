@@ -4,3 +4,5 @@ namespace: flux-system
 resources:
   - release.yaml
   - tls-certs.yaml
+  - load-balancer.yaml
+  - oidc-auth-secret.yaml
