@@ -6,4 +6,3 @@ resources:
   - image-auto-update.yaml
   - tls-certs.yaml
   - load-balancer.yaml
-  - dex-oidc-secret.yaml

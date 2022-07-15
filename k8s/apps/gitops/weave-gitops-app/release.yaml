@@ -25,7 +25,12 @@ spec:
       create: true
       username: test-admin
       passwordHash: $2y$10$sHT5PLEDTGWSwde/DfOZveOFcjAHy5ap37s6cyV7z6i2Ca6KMygUy
-    # FIXME use chart's OIDC secret
+    oidcSecret:
+      create: true
+      clientID: weave-gitops-app
+      clientSecret: ${dexSecret}
+      issuerURL: https://${dexDomain}
+      redirectURL: https://${gitopsDomain}/oauth2/callback
     additionalArgs: ["--insecure"]
     service:
       annotations:
