@@ -17,6 +17,6 @@ spec:
   validation: client
   postBuild:
     substitute:
-      apexDomain: dev-internal.wego-gke.weave.works
-      txtOwnerId: dev-internal
+      apexDomain: internal-dev.wego-gke.weave.works
+      txtOwnerId: internal-dev
       externalDnsSa: dns-internal-dev-gke@weave-gitops-clusters.iam.gserviceaccount.com
