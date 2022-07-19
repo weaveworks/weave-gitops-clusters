@@ -16,6 +16,7 @@ spec:
   interval: 30m
   targetNamespace: dex
   values:
+    # cf https://github.com/dexidp/helm-charts/blob/master/charts/dex/values.yaml
     config:
       issuer: https://${dexDomain}
 
@@ -73,3 +74,10 @@ spec:
         paths:
         - path: /*
           pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
+    resources:
+      limits:
+        cpu: "1"
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi

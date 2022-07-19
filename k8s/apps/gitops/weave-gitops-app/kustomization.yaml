@@ -6,3 +6,4 @@ resources:
   - image-auto-update.yaml
   - tls-certs.yaml
   - load-balancer.yaml
+  - pod-monitoring.yaml
