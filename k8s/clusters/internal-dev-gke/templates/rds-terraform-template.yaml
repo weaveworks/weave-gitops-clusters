@@ -1,0 +1,49 @@
+---
+apiVersion: clustertemplates.weave.works/v1alpha1
+kind: GitOpsTemplate
+metadata:
+  name: rds-template
+  namespace: default
+spec:
+  description: This is a sample Aurora RDS template.
+  params:
+    - name: RESOURCE_NAME
+      description: Resource Name
+    - name: CLUSTER_IDENTIFIER
+      description: Cluster Identifier
+    - name: DATABASE_NAME
+      description: Database Name
+    - name: BACKUP_RETENTION_PERIOD
+      description: Backup Retention Period (number, in days)
+    - name: REGION
+      description: Region
+      options:
+        - us-east-1
+        - eu-central-1
+  resourcetemplates:
+    - apiVersion: infra.contrib.fluxcd.io/v1alpha1
+      kind: Terraform
+      metadata:
+        name: ${RESOURCE_NAME}
+        namespace: flux-system
+      spec:
+        interval: 1h
+        path: ./terraform/rds
+        approvePlan: auto
+        alwaysCleanupRunnerPod: true
+        vars:
+          - name: cluster_identifier
+            value: ${CLUSTER_IDENTIFIER}
+          - name: database_name
+            value: ${DATABASE_NAME}
+          - name: backup_retention_period
+            value: ${BACKUP_RETENTION_PERIOD}
+          - name: region
+            value: ${REGION}
+        varsFrom:
+          - kind: Secret
+            name: tf-controller-auth
+        sourceRef:
+          kind: GitRepository
+          name: flux-system
+          namespace: flux-system

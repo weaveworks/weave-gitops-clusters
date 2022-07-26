@@ -1,0 +1,6 @@
+namespace: blue-green-traffic-mirroring
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - hpa.yaml
+  - canary.yaml

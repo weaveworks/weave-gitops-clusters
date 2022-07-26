@@ -1,0 +1,28 @@
+---
+apiVersion: capi.weave.works/v1alpha1
+kind: CAPITemplate
+metadata:
+  name: connect-a-cluster-with-policies
+  namespace: default
+  annotations:
+    capi.weave.works/profile-0: '{"name": "weave-policy-agent", "version": "0.2.8", "values": "accountId: weaveworks\nclusterId: ${CLUSTER_NAME}" }'
+spec:
+  description: Connect a cluster
+  params:
+    - name: CLUSTER_NAME
+      required: true
+      description: This is used for the cluster naming.
+    - name: SECRET_NAME
+      required: true
+      description: The secret that holds the kubeconfig
+  resourcetemplates:
+    - apiVersion: gitops.weave.works/v1alpha1
+      kind: GitopsCluster
+      metadata:
+        name: "${CLUSTER_NAME}"
+        namespace: "${NAMESPACE}"
+        labels:
+          weave.works/capi: bootstrap
+      spec:
+        secretRef:
+          name: "${SECRET_NAME}"
