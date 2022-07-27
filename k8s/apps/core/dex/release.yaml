@@ -21,7 +21,7 @@ spec:
       issuer: https://${dexDomain}
 
       staticClients:
-      - id: weave-gitops-app
+      - id: ${dexClientId:=weave-gitops-app}
         name: Weave Gitops
         redirectURIs:
         - https://${gitopsDomain}/oauth2/callback

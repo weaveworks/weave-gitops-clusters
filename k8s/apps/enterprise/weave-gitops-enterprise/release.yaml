@@ -15,8 +15,11 @@ spec:
         namespace: flux-system
   interval: 10m0s
   install:
+    crds: CreateReplace
     remediation:
       retries: 3
+  upgrade:
+    crds: CreateReplace
   values:
     service:
       annotations:
@@ -35,5 +38,10 @@ spec:
       capi:
         clusters:
           namespace: flux-system
+      oidc:
+        enabled: true
+        issuerURL: https://${dexDomain}
+        redirectURL: https://${gitopsDomain}/oauth2/callback
+        clientCredentialsSecret: oidc-auth
     tls:
       enabled: false

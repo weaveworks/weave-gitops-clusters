@@ -1,0 +1,144 @@
+---
+apiVersion: capi.weave.works/v1alpha1
+kind: CAPITemplate
+metadata:
+  name: gcp-cluster-template
+  namespace: default
+spec:
+  description: GCP CAPI template
+  params:
+  - name: CLUSTER_NAME
+    description: The name of the new cluster
+  - name: NAMESPACE
+    description: The namespace for the new cluster
+  resourcetemplates:
+  - apiVersion: gitops.weave.works/v1alpha1
+    kind: GitopsCluster
+    metadata:
+      name: "${CLUSTER_NAME}"
+      namespace: "${NAMESPACE}"
+    spec:
+      capiClusterRef:
+        name: "${CLUSTER_NAME}"
+  - apiVersion: cluster.x-k8s.io/v1beta1
+    kind: Cluster
+    metadata:
+      name: "${CLUSTER_NAME}"
+      namespace: "${NAMESPACE}"
+      labels:
+        cni: calico
+        weave.works/capi: bootstrap
+    spec:
+      clusterNetwork:
+        pods:
+          cidrBlocks:
+          - 192.168.0.0/16
+      controlPlaneRef:
+        apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+        kind: KubeadmControlPlane
+        name: "${CLUSTER_NAME}-control-plane"
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: GCPCluster
+        name: "${CLUSTER_NAME}"
+  - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: GCPCluster
+    metadata:
+      name: "${CLUSTER_NAME}"
+      namespace: "${NAMESPACE}"
+    spec:
+      network:
+        name: default
+      project: wks-tests
+      region: europe-north1
+  - apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: KubeadmControlPlane
+    metadata:
+      name: "${CLUSTER_NAME}-control-plane"
+      namespace: "${NAMESPACE}"
+    spec:
+      kubeadmConfigSpec:
+        clusterConfiguration:
+          apiServer:
+            extraArgs:
+              cloud-provider: gce
+            timeoutForControlPlane: 20m
+          controllerManager:
+            extraArgs:
+              allocate-node-cidrs: "false"
+              cloud-provider: gce
+        initConfiguration:
+          nodeRegistration:
+            kubeletExtraArgs:
+              cloud-provider: gce
+            name: '{{ ds.meta_data.local_hostname.split(".")[0] }}'
+        joinConfiguration:
+          nodeRegistration:
+            kubeletExtraArgs:
+              cloud-provider: gce
+            name: '{{ ds.meta_data.local_hostname.split(".")[0] }}'
+      machineTemplate:
+        infrastructureRef:
+          apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+          kind: GCPMachineTemplate
+          name: "${CLUSTER_NAME}-control-plane"
+      replicas: 1
+      version: v1.20.10
+  - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: GCPMachineTemplate
+    metadata:
+      name: "${CLUSTER_NAME}-control-plane"
+      namespace: "${NAMESPACE}"
+    spec:
+      template:
+        spec:
+          image: https://www.googleapis.com/compute/v1/projects/wks-tests/global/images/cluster-api-ubuntu-1804-v1-20-10-1640288244
+          instanceType: n1-standard-2
+  - apiVersion: cluster.x-k8s.io/v1beta1
+    kind: MachineDeployment
+    metadata:
+      name: "${CLUSTER_NAME}-md-0"
+      namespace: "${NAMESPACE}"
+    spec:
+      clusterName: "${CLUSTER_NAME}"
+      replicas: 1
+      selector:
+        matchLabels: null
+      template:
+        spec:
+          bootstrap:
+            configRef:
+              apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+              kind: KubeadmConfigTemplate
+              name: "${CLUSTER_NAME}-md-0"
+          clusterName: "${CLUSTER_NAME}"
+          failureDomain: europe-north1-a
+          infrastructureRef:
+            apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+            kind: GCPMachineTemplate
+            name: "${CLUSTER_NAME}-md-0"
+          version: v1.20.10
+  - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: GCPMachineTemplate
+    metadata:
+      name: "${CLUSTER_NAME}-md-0"
+      namespace: "${NAMESPACE}"
+    spec:
+      template:
+        spec:
+          image: https://www.googleapis.com/compute/v1/projects/wks-tests/global/images/cluster-api-ubuntu-1804-v1-20-10-1640288244
+          instanceType: n1-standard-2
+  - apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+    kind: KubeadmConfigTemplate
+    metadata:
+      name: "${CLUSTER_NAME}-md-0"
+      namespace: "${NAMESPACE}"
+    spec:
+      template:
+        spec:
+          joinConfiguration:
+            nodeRegistration:
+              kubeletExtraArgs:
+                cloud-provider: gce
+              name: '{{ ds.meta_data.local_hostname.split(".")[0] }}'
+---

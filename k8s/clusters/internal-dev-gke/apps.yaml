@@ -16,6 +16,14 @@ spec:
   validation: client
   postBuild:
     substitute:
-      apexDomain: dev-internal.wego-gke.weave.works
-      dexDomain: dex.dev-internal.wego-gke.weave.works
-      gitopsDomain: gitops.dev-internal.wego-gke.weave.works
+      dexClientId: weave-gitops-enterprise
+      dexDomain: dex.internal-dev.wego-gke.weave.works
+      gitopsDomain: gitops.internal-dev.wego-gke.weave.works
+  patches:
+    - patch: |-
+        - op: replace
+          path: /spec/values/clusterid
+          value: internal-dev
+      target:
+        kind: HelmRelease
+        name: weave-policy-agent
