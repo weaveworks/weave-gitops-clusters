@@ -21,7 +21,7 @@ spec:
     # cf. https://github.com/weaveworks/weave-gitops/blob/main/charts/gitops-server/values.yaml
     image:
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1658926310-936d9c206980f1504274d3a9cc071a5e47750426 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1658929131-01dea4fda8d2b55c897c6c370790c4c02e079556 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
