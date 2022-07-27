@@ -74,4 +74,3 @@ spec:
           type: cmd
           cmd: "hey -z 15m -q 10 -c 2 -H 'Cookie: type=insider' http://podinfo-canary.ab-testing:9898/"
           logCmdOutput: "true"
----
