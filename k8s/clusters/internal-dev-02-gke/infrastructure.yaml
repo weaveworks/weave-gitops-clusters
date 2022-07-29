@@ -1,0 +1,22 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: infrastructure
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: shared-secrets
+    - name: cluster-secrets
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/infrastructure
+  prune: true
+  validation: client
+  postBuild:
+    substitute:
+      apexDomain: internal-dev-02.wego-gke.weave.works
+      txtOwnerId: internal-dev-02
+      externalDnsSa: dns-internal-dev-02-gke@weave-gitops-clusters.iam.gserviceaccount.com

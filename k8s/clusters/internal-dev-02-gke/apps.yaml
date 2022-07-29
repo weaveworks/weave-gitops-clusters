@@ -1,0 +1,29 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps-enterprise
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: infrastructure
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/apps/enterprise
+  prune: true
+  validation: client
+  postBuild:
+    substitute:
+      dexClientId: weave-gitops-enterprise
+      dexDomain: dex.internal-dev-02.wego-gke.weave.works
+      gitopsDomain: gitops.internal-dev-02.wego-gke.weave.works
+  patches:
+    - patch: |-
+        - op: replace
+          path: /spec/values/clusterid
+          value: internal-dev-02
+      target:
+        kind: HelmRelease
+        name: weave-policy-agent
