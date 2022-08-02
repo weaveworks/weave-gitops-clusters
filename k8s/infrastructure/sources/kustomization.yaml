@@ -4,6 +4,7 @@ namespace: flux-system
 resources:
   - bitnami.yaml
   - flagger.yaml
+  - nginx.yaml
   - istio.yaml
   - dex.yaml
   - weave-gitops.yaml
