@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: podinfod
-        image: ghcr.io/stefanprodan/podinfo:6.0.0 # enekofb/podinfo:v2
+        image: enekofb/podinfo:v2 # ghcr.io/stefanprodan/podinfo:6.0.0 
         imagePullPolicy: Always
         ports:
         - name: http
