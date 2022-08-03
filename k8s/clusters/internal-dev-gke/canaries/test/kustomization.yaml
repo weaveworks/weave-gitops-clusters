@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   - deployment.yaml
   - hpa.yaml
-#   - ingress.yaml
+  - ingress.yaml
   - canary.yaml
