@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo
+  labels:
+    app: podinfo
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  # ingressClassName: nginx
+  rules:
+  - host: podinfo-02.wge.dev.weave.works
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: podinfo
+            port:
+              number: 80
