@@ -1,7 +1,0 @@
-namespace: canary-release
-resources:
-  - namespace.yaml
-  - deployment.yaml
-  - hpa.yaml
-#   - ingress.yaml
-  - canary.yaml

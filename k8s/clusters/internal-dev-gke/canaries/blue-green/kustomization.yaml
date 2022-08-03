@@ -1,6 +1,0 @@
-namespace: blue-green
-resources:
-  - namespace.yaml
-  - deployment.yaml
-  - hpa.yaml
-  - canary.yaml
