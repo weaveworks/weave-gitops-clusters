@@ -27,7 +27,7 @@ spec:
       containers:
       - name: podinfod
         image: enekofb/podinfo:v2-error
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - name: http
           containerPort: 9898
