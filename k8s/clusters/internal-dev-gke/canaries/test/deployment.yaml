@@ -23,7 +23,6 @@ spec:
         timestamp: "2022-06-23T13:46:49Z"
       labels:
         app: podinfo
-        foo: bar
     spec:
       containers:
       - name: podinfod
