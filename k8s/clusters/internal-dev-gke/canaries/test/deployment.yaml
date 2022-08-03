@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: podinfod
-        image: enekofb/podinfo:v3
+        image: enekofb/podinfo:v2
         imagePullPolicy: Always
         ports:
         - name: http
