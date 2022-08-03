@@ -19,6 +19,5 @@ spec:
       podAnnotations:
         prometheus.io/scrape: true
         prometheus.io/port: 10254
-      service:
-        admissionWebhooks:
-          enabled: false
+      admissionWebhooks:
+        enabled: false
