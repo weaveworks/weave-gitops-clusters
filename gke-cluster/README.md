@@ -81,6 +81,17 @@ export GITHUB_TOKEN="<weaveworksbot token>"
 make flux-bootstrap
 ```
 
+You might find the following error
+```
+CRITICAL: ACTION REQUIRED: gke-gcloud-auth-plugin, which is needed for continued use of kubectl, was not found or is not executable. 
+Install gke-gcloud-auth-plugin for use with kubectl by following https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+```
+
+That you fix via `gcloud components install gke-gcloud-auth-plugin`
+
+if you are using `flux v0.33.0` you might hit [this issue](https://github.com/fluxcd/flux2/issues/3065), so just use a previous
+version to bootstrap. for example `0.32.0`
+
 ## Notes
 
 ### Networking
