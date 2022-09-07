@@ -35,6 +35,11 @@ and run: mdtoc -inplace gke-cluster/README.md
 * DNS hosted zone
 * Various service accounts
 
+## Requirements 
+
+- You are part of the group [gcp-weave-gitops-clusters-project-owners](https://console.cloud.google.com/iam-admin/groups/0147n2zr1jupgmu?orgonly=true&organizationId=36144081350&supportedpurview=organizationId). 
+Request [joining via corp](https://github.com/weaveworks/corp/issues/2980)
+
 ## Usage
 
 ```bash

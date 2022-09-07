@@ -1,5 +1,5 @@
 region         = "europe-west1"
-dns_short_name = "internal-dev-sunglow"
+dns_short_name = "internal-dev-02"
 node_pool_config = {
   machine_type = "e2-standard-4"
   min_count    = 1
