@@ -1,6 +1,6 @@
 # Connect a leaf cluster to enterprise
 
-You want to connect an existing kube cluster to Weave Gitops Enterprise via its mangement cluster.
+You want to connect an existing kube cluster to Weave Gitops Enterprise via its management cluster.
 
 ## Requirements
 
