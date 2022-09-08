@@ -49,8 +49,7 @@ internal-dev-token   kubernetes.io/service-account-token   3      11h
 
 ```
 
-Once you have created the leaf cluster [kubeconfig as secret in the management cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters/#how-to-create-a-kubeconfig-secret-using-a-service-account).
-You could just add the [gitops cluster manifest](../k8s/clusters/internal-dev-gke/clusters/gitops-cluster.yaml).
+Once you have created the leaf cluster [kubeconfig as secret in the management cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters/#how-to-create-a-kubeconfig-secret-using-a-service-account), you could just add the [gitops cluster manifest](../k8s/clusters/internal-dev-gke/clusters/gitops-cluster.yaml).
 
 Notice that you should ensure to create the cluster manifest in 
 the [right namespace](https://github.com/weaveworks/weave-gitops-enterprise/blob/76ff28cf899a094cef623b5ccd46b2f426516abf/cmd/clusters-service/app/server.go#L176)
