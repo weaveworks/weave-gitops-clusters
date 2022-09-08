@@ -52,11 +52,19 @@ internal-dev-token   kubernetes.io/service-account-token   3      11h
 Once you have created the leaf cluster [kubeconfig as secret in the management cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters/#how-to-create-a-kubeconfig-secret-using-a-service-account), you could just add the [gitops cluster manifest](../k8s/clusters/internal-dev-gke/clusters/gitops-cluster.yaml).
 
 Notice that you should ensure to create the cluster manifest in 
-the [right namespace](https://github.com/weaveworks/weave-gitops-enterprise/blob/76ff28cf899a094cef623b5ccd46b2f426516abf/cmd/clusters-service/app/server.go#L176)
+the [right namespace](https://github.com/weaveworks/weave-gitops-enterprise/blob/76ff28cf899a094cef623b5ccd46b2f426516abf/cmd/clusters-service/app/server.go#L176), 
+and that your cluster becomes ready
 
-And you could see that cluster service is happy because the cluster shows 
+```
+➜  gke-cluster git:(issues/34) k get gitopsclusters.gitops.weave.works
+
+NAME              AGE   READY   STATUS
+internal-dev-02   19h   True
+```
+
+You would be able to see that cluster service is happy because the cluster shows 
 [in the ui](https://gitops.internal-dev.wego-gke.weave.works/cluster/details?clusterName=internal-dev-02) or the logs
- 
+
 ```
 {"level":"info","ts":1662589808.5358994,"logger":"gitops.multi-cluster-fetcher","caller":"fetcher/multi.go:56","msg":"Found clusters","clusters":["management","flux-system/internal-dev-02"]}
 ```
