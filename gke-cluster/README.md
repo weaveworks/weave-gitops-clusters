@@ -121,8 +121,9 @@ under `spec.chart.values.image.tag`.
 Logs for the `weave-gitops-app` deployment can be found [here](https://console.cloud.google.com/kubernetes/deployment/europe-west1-b/europe-west1-gke/flux-system/weave-gitops-app/logs?project=weave-gitops-clusters&pli=1).
 If you cannot see that page, contact [corp-it](https://github.com/weaveworks/corp/issues).
 
-## Connect a cluster
+## Connect a leaf cluster
 
-For example for internal-dev (management) and internal-dev-02 (leaf).
+Now that you have provisioned your cluster, in the case of playing the role of a leaf cluster, you might 
+want to connect it to a mangement clusters. You could read [how to connect a leaf cluster](../docs/connect-leaf-cluster.md).
 
 
