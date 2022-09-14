@@ -6,11 +6,11 @@ metadata:
 spec:
   chart:
     spec:
-      chart: "apps/podinfo"
+      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo"
       version: 0.0.3
       sourceRef:
         kind: GitRepository
-        name: flux-system
+        name: flux-system-1419
         namespace: flux-system
   targetNamespace: dev
   interval: 1m0s
