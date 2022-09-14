@@ -20,14 +20,14 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9797"
-        timestamp: "2022-07-05T15:51:00Z"
+        timestamp: "2022-09-12T12:46:00Z"
       labels:
         app: podinfo
         app.kubernetes.io/part-of: my-app
     spec:
       containers:
       - name: podinfod
-        image: ghcr.io/stefanprodan/podinfo:6.0.1
+        image: ghcr.io/stefanprodan/podinfo:6.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - name: http

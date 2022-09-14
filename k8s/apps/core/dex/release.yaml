@@ -20,6 +20,20 @@ spec:
     config:
       issuer: https://${dexDomain}
 
+      oauth2:
+        skipApprovalScreen: true # do not show the 'Grant Access' screen on every login
+      
+      connectors:
+      - type: google
+        id: google
+        name: Google
+        config:
+          clientID: ${client_id} # value from 'iap-oauth-client' secret in flux-system namespace
+          clientSecret: ${client_secret} # value from 'iap-oauth-client' secret in flux-system namespace
+          redirectURI: https://${dexDomain}/callback
+          serviceAccountFilePath: /etc/dex/google/auth.json
+          adminEmail: oidc-auth-user@weave.works
+
       staticClients:
       - id: ${dexClientId:=weave-gitops-app}
         name: Weave Gitops
@@ -81,3 +95,10 @@ spec:
       requests:
         cpu: 100m
         memory: 64Mi
+    volumes:
+    - name: dex-google-auth-creds # required to lookup user group information from Google
+      secret:
+        secretName: dex-google-auth-creds
+    volumeMounts:
+    - name: dex-google-auth-creds
+      mountPath: /etc/dex/google

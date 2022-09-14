@@ -1,7 +1,23 @@
-#
-# admin
-#
 ---
+#
+# department-engineering-employees@weave.works
+#
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: weave-engineers-gitops-reader
+roleRef:
+  kind: ClusterRole
+  name: gitops-reader
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: Group
+    name: department-engineering-employees@weave.works
+    apiGroup: rbac.authorization.k8s.io
+---
+#
+# static admin
+#
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -16,7 +32,7 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
 ---
 #
-# read-only
+# static read-only
 #
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

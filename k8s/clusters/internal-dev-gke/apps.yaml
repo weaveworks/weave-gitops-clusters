@@ -14,16 +14,14 @@ spec:
   path: ./k8s/apps/enterprise
   prune: true
   validation: client
+  decryption:
+    provider: sops # required for dex auth decryption
   postBuild:
     substitute:
       dexClientId: weave-gitops-enterprise
       dexDomain: dex.internal-dev.wego-gke.weave.works
       gitopsDomain: gitops.internal-dev.wego-gke.weave.works
-  patches:
-    - patch: |-
-        - op: replace
-          path: /spec/values/clusterid
-          value: internal-dev
-      target:
-        kind: HelmRelease
-        name: weave-policy-agent
+      policyAgentClusterId: internal-dev
+    substituteFrom:
+      - kind: Secret
+        name: iap-oauth-client

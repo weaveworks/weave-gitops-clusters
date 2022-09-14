@@ -35,6 +35,11 @@ and run: mdtoc -inplace gke-cluster/README.md
 * DNS hosted zone
 * Various service accounts
 
+## Requirements 
+
+- You are part of the group [gcp-weave-gitops-clusters-project-owners](https://console.cloud.google.com/iam-admin/groups/0147n2zr1jupgmu?orgonly=true&organizationId=36144081350&supportedpurview=organizationId). 
+Request [joining via corp](https://github.com/weaveworks/corp/issues/2980)
+
 ## Usage
 
 ```bash
@@ -76,6 +81,17 @@ export GITHUB_TOKEN="<weaveworksbot token>"
 make flux-bootstrap
 ```
 
+You might find the following error
+```
+CRITICAL: ACTION REQUIRED: gke-gcloud-auth-plugin, which is needed for continued use of kubectl, was not found or is not executable. 
+Install gke-gcloud-auth-plugin for use with kubectl by following https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+```
+
+That you fix via `gcloud components install gke-gcloud-auth-plugin`
+
+if you are using `flux v0.33.0` you might hit [this issue](https://github.com/fluxcd/flux2/issues/3065), so just use a previous
+version to bootstrap. for example `0.32.0`
+
 ## Notes
 
 ### Networking
@@ -104,3 +120,10 @@ under `spec.chart.values.image.tag`.
 
 Logs for the `weave-gitops-app` deployment can be found [here](https://console.cloud.google.com/kubernetes/deployment/europe-west1-b/europe-west1-gke/flux-system/weave-gitops-app/logs?project=weave-gitops-clusters&pli=1).
 If you cannot see that page, contact [corp-it](https://github.com/weaveworks/corp/issues).
+
+## Connect a leaf cluster
+
+Now that you have provisioned your cluster, in the case of playing the role of a leaf cluster, you might 
+want to connect it to a mangement clusters. You could read [how to connect a leaf cluster](../docs/connect-leaf-cluster.md).
+
+
