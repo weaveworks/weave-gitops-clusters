@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: prod
+spec:
+  chart:
+    spec:
+      chart: "apps/podinfo"
+      version: 0.0.3
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  targetNamespace: prod
+  interval: 1m0s
+  values:
+    deployment:
+      image: "ghcr.io/stefanprodan/podinfo:6.0.0"
+    canary:
+      loadtester:
+        url: "http://flagger-flagger-loadtester.flagger/"
+    ingress:
+      host: "podinfo-prod.weavegitops.com"

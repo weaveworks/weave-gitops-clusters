@@ -1,0 +1,23 @@
+0apiVersion: v2
+name: podinfo
+description: A Weaveworks Helm chart for podinfo
+type: application
+version: 0.0.3
+kubeVersion: ">=1.16.0-0"
+home: https://github.com/weaveworks/weave-gitops-profile-examples
+sources:
+  - https://github.com/stefanprodan/podinfo
+
+annotations:
+  "weave.works/profile": podinfo
+  "weave.works/category": Application
+  "weave.works/layer": layer-2
+  "weave.works/links": |
+    - name: Chart Sources
+      url: https://github.com/weaveworks/weave-gitops-profile-examples
+    - name: Upstream Project
+      url: https://github.com/stefanprodan/podinfo
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works
