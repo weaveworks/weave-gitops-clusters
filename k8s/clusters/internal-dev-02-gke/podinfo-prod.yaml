@@ -6,19 +6,19 @@ metadata:
 spec:
   chart:
     spec:
-      chart: "apps/podinfo"
-      version: 0.0.3
+      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo"
+      version: 0.0.4
       sourceRef:
         kind: GitRepository
-        name: flux-system
+        name: flux-system-1419
         namespace: flux-system
   targetNamespace: prod
   interval: 1m0s
   values:
     deployment:
-      image: "ghcr.io/stefanprodan/podinfo:6.0.0"
+      image: "ghcr.io/stefanprodan/podinfo:6.0.2"
     canary:
       loadtester:
         url: "http://flagger-flagger-loadtester.flagger/"
     ingress:
-      host: "podinfo-prod.weavegitops.com"
+      host: "podinfo-dev.weavegitops.com"
