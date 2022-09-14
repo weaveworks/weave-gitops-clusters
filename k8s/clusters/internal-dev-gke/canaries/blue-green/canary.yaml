@@ -3,7 +3,6 @@ kind: Canary
 metadata:
   name: podinfo
 spec:
-  provider: istio
   # deployment reference
   targetRef:
     apiVersion: apps/v1
@@ -22,6 +21,16 @@ spec:
     port: 9898
     # container port number or name
     targetPort: 9898
+    # Istio gateways (optional)
+    gateways:
+    - istio-system/public-gateway
+    hosts:
+    - app.example.com
+    # Istio traffic policy (optional)
+    trafficPolicy:
+      tls:
+        # use ISTIO_MUTUAL when mTLS is enabled
+        mode: DISABLE
   analysis:
     # schedule interval (default 60s)
     interval: 30s
