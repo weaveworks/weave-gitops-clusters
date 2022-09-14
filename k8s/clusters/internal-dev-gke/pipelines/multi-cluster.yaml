@@ -20,6 +20,11 @@ spec:
         - namespace: prod
           clusterRef:
             kind: GitopsCluster
-            name: internal-dev-02
+            name: us-east
+            namespace: flux-system
+        - namespace: prod
+          clusterRef:
+            kind: GitopsCluster
+            name: us-west
             namespace: flux-system
 

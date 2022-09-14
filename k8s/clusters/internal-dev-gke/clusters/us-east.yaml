@@ -1,7 +1,7 @@
 apiVersion: gitops.weave.works/v1alpha1
 kind: GitopsCluster
 metadata:
-  name: us-east-1
+  name: us-east
   namespace: flux-system
 spec:
   secretRef:
