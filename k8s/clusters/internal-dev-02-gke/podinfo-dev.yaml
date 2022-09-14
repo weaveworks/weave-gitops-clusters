@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo"
-      version: 0.0.3
+      version: 0.0.4
       sourceRef:
         kind: GitRepository
         name: flux-system-1419

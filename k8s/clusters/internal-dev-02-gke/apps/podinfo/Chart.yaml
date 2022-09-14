@@ -2,7 +2,7 @@
 name: podinfo
 description: A Weaveworks Helm chart for podinfo
 type: application
-version: 0.0.3
+version: 0.0.4
 kubeVersion: ">=1.16.0-0"
 home: https://github.com/weaveworks/weave-gitops-profile-examples
 sources:
