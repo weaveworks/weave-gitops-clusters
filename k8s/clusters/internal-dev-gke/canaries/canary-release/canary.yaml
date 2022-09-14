@@ -57,7 +57,7 @@ spec:
       - name: acceptance-test
         type: pre-rollout
         timeout: 30s
-        url: http:/flagger-loadtester.istio-system/
+        url: http://flagger-loadtester.istio-system/
         metadata:
           type: bash
           cmd: "curl -sd 'test' http://podinfo-canary.canary-release:9898/token | grep token"

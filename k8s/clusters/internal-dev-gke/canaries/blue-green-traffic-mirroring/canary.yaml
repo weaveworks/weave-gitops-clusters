@@ -3,7 +3,6 @@ kind: Canary
 metadata:
   name: podinfo
 spec:
-  provider: istio
   # deployment reference
   targetRef:
     apiVersion: apps/v1
