@@ -20,7 +20,7 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9797"
-        timestamp: "2022-07-05T15:51:00Z"
+        timestamp: "2022-09-12T12:46:00Z"
       labels:
         app: podinfo
         app.kubernetes.io/part-of: my-app

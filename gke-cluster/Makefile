@@ -1,11 +1,11 @@
 .PHONY: default \
-				tf-apply \
-				tf-plan \
-				tf-lock \
-				tf-create-workspace \
-				gke-creds \
-				flux-bootstrap \
-				help
+		tf-apply \
+		tf-plan \
+		tf-lock \
+		tf-create-workspace \
+		gke-creds \
+		flux-bootstrap \
+		help
 
 ENV?=$(shell if [ -e .terraform/environment ]; then cat .terraform/environment; else echo "europe-west1"; fi)
 FLUX_BRANCH?=main
@@ -53,17 +53,17 @@ tf-lock:
 
 ##@ Kubernetes
 gke-creds: ## Set kubectl credentials
-	gcloud container clusters get-credentials $(ENV)-gke
+	gcloud container clusters get-credentials $(ENV)-gke --project weave-gitops-clusters
 
 ##@ Flux
 flux-bootstrap: gke-creds ## Bootstrap flux in the cluster
 	flux bootstrap github --owner=weaveworks \
-												--components-extra=image-reflector-controller,image-automation-controller \
-											  --repository=weave-gitops-clusters \
-											  --path=k8s/clusters/$(ENV)-gke \
-											  --branch=$(FLUX_BRANCH) \
-											  --read-write-key \
-											  --reconcile
+		--components-extra=image-reflector-controller,image-automation-controller \
+		--repository=weave-gitops-clusters \
+		--path=k8s/clusters/$(ENV)-gke \
+		--branch=$(FLUX_BRANCH) \
+		--read-write-key \
+		--reconcile
 
 sa-keys/enterprise-capi-$(ENV).json: tf-apply
 
@@ -79,7 +79,7 @@ clean: ## Clean up
 # Thanks to https://www.thapaliya.com/en/writings/well-documented-makefiles/
 help:  ## Display this help.
 ifeq ($(OS),Windows_NT)
-				@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n make <target>\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  %-40s %s\n", $$1, $$2 } /^##@/ { printf "\n%s\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n make <target>\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  %-40s %s\n", $$1, $$2 } /^##@/ { printf "\n%s\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 else
-				@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-40s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-40s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 endif
