@@ -8,4 +8,5 @@ resources:
   - dex.yaml
   - weave-gitops.yaml
   - weave-gitops-enterprise.yaml
+  - tf-controller.yaml
   # - podinfo.yaml # this source is in k8s/apps/gitops/podinfo so the ns-admin user can be demonstrated with some permissions
