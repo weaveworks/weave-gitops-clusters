@@ -14,4 +14,4 @@ spec:
   validation: client
   postBuild:
     substitute:
-      clusterName: internal-dev
+      managementClusterName: internal-dev
