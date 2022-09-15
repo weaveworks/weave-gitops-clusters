@@ -6,8 +6,8 @@ metadata:
 spec:
   chart:
     spec:
-      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo"
-      version: 0.0.4
+      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo-5"
+      version: 0.0.5
       sourceRef:
         kind: GitRepository
         name: flux-system-1419

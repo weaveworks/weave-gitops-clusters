@@ -1,0 +1,13 @@
+0apiVersion: v2
+name: podinfo
+description: A Weaveworks Helm chart for podinfo
+type: application
+version: 0.0.5
+kubeVersion: ">=1.16.0-0"
+sources:
+  - https://github.com/stefanprodan/podinfo
+
+
+maintainers:
+  - name: Weaveworks
+    email: support@weave.works

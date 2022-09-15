@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo"
+      chart: "k8s/clusters/internal-dev-02-gke/apps/podinfo-4"
       version: 0.0.4
       sourceRef:
         kind: GitRepository
