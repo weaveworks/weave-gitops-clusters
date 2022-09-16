@@ -8,3 +8,4 @@ resources:
 - policies.yaml
 - secrets.yaml
 - templates.yaml
+- clusters.yaml
