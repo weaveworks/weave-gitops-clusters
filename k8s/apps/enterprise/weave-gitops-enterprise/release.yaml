@@ -46,3 +46,4 @@ spec:
     tls:
       enabled: false
     enablePipelines: true
+    enableTerraformUI: true
