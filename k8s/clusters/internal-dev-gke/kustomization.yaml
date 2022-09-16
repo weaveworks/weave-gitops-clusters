@@ -9,3 +9,4 @@ resources:
 - secrets.yaml
 - templates.yaml
 - clusters.yaml
+- pipelines.yaml
