@@ -11,6 +11,7 @@ locals {
     europe-west1    = true
     us-central1     = true
     internal-dev-02 = true
+    leaf-01         = true
     leaf-02         = true
   }
   is_allowed_workspace = local.allowed_workspaces[terraform.workspace]
