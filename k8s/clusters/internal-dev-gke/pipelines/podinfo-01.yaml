@@ -9,6 +9,13 @@ spec:
     kind: HelmRelease
     name: podinfo
   environments:
+    - name: dev
+      targets:
+        - namespace: podinfo-01-dev
+          clusterRef:
+            kind: GitopsCluster
+            name: dev
+            namespace: flux-system
     - name: prod
       targets:
         - namespace: podinfo-01-prod
