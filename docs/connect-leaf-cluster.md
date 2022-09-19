@@ -7,68 +7,82 @@ You want to connect an existing kube cluster to Weave Gitops Enterprise via its 
 - You have a leaf cluster. For this guide we will be using [leaf-01](../gke-cluster/vars/leaf-01.tfvars)
 - You have a management cluster. For this guide we will be using [internal-dev](../gke-cluster/vars/internal-dev.tfvars)
 
-## How-to
-
-## Connecting leaf cluster Kubernetes 1.21 or above
-
-Mostly, the current documentation [how to connect an existing cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters) works.
-However, from Kubernetes 1.21 bound tokens are the [default service account tokens](https://globalcloudplatforms.com/2022/07/15/what-gke-users-need-to-know-about-kubernetes-new-service-account-tokens/)
-meaning that when you create a service account, there wont be any static token created as you could see below
-```
-➜   k get sa
-NAME           SECRETS   AGE
-default        0         21h
-internal-dev   0         12h
-```
-so in order to create the token required for the kubeconfig you would need to create a token in any of the following ways
-
-### Service Account Token Secrets
-
-These are non bounded tokens that could be generated via a secret resource as explained in the
-[guide](https://kubernetes.io/docs/concepts/configuration/secret/#service-account-token-secrets)
+## Connect leaf cluster to management cluster
+### Step 1 - add base config to leaf cluster
+For conveniance and repeatabilty, there is a global [leaf cluster config](../k8s/config/leaf-cluster/) that can be added to the cluster directory for the leaf cluster (ie `k8s/clusters/leaf-01-gke`).  The config will look something like this:
 
 ```yaml
-apiVersion: v1
-kind: Secret
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
 metadata:
-  name: internal-dev-token
-  namespace: default
-  annotations:
-    kubernetes.io/service-account.name: "internal-dev"
-type: kubernetes.io/service-account-token
-
+  name: leaf-cluster-config
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/config/leaf-cluster
+  prune: true
+  validation: client
+  postBuild:
+    substitute:
+      clusterName: leaf-01
 ```
 
-that once created you could see how the secret data includes both the `service account token` and the `ca.crt` to be
-used to create the management cluster kubeconfig
+This will create all the necessary service accounts, tokens, and role bindings necessary for the leaf cluster and management cluster to interact with each other.
 
-```
-➜  gke-cluster git:(issues/34) ✗ k get secret
-NAME                 TYPE                                  DATA   AGE
-internal-dev-token   kubernetes.io/service-account-token   3      11h
-
-```
-
-Once you have created the leaf cluster [kubeconfig as secret in the management cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters/#how-to-create-a-kubeconfig-secret-using-a-service-account), you could just add the [gitops cluster manifest](../k8s/clusters/internal-dev-gke/clusters/gitops-cluster.yaml).
-
-Notice that you should ensure to create the cluster manifest in
-the [right namespace](https://github.com/weaveworks/weave-gitops-enterprise/blob/76ff28cf899a094cef623b5ccd46b2f426516abf/cmd/clusters-service/app/server.go#L176),
-and that your cluster becomes ready
-
-```
-➜  gke-cluster git:(issues/34) k get gitopsclusters.gitops.weave.works
-
-NAME              AGE   READY   STATUS
-dev   19h   True
+### Step 2 - add leaf cluster to management cluster
+First create a sops encoded leaf kubeconfig and add it to the management clusters `k8s/secrets` directory
+```bash
+CLUSTER_NAME=leaf-01 \
+CA_CERTIFICATE_DATA=<base64-encoded-cert> \
+ENDPOINT=<control-plane-ip-address> \
+TOKEN=<token> ./k8s/config/leaf-cluster/create-kubeconfig.sh > k8s/secrets/internal-dev-gke/leaf-01-kubeconfig.yaml
+sops -e -i k8s/secrets/internal-dev-gke/leaf-01-kubeconfig.yaml
 ```
 
-You would be able to see that cluster service is happy because the cluster shows
-[in the ui](https://gitops.internal-dev.wego-gke.weave.works/cluster/details?clusterName=dev) or the logs
+Then create a `clusters` directory under the the management clusters `k8s/clusters` directory
+```bash
+mkdir -p k8s/clusters/internal-dev-gke/clusters
+```
+and create a clusters kustomization under the management cluster
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: clusters
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: cluster-secrets
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/clusters/internal-dev-gke/clusters
+  prune: true
+  validation: client
+```
+> Don't forget to update the `kustomization.yaml` to include the `clusters.yaml` resource
+
+Now just add the GitopsCluster yaml definition to the management cluster's `clusters` directory
+```yaml
+apiVersion: gitops.weave.works/v1alpha1
+kind: GitopsCluster
+metadata:
+  name: dev
+  namespace: flux-system
+spec:
+  secretRef:
+    name: leaf-01-kubeconfig
+```
+
+Once all that is done and commited to `main` Flux should create all the necessary resources.  You can verify that everything is working via the cli or [in the ui](https://gitops.internal-dev.wego-gke.weave.works/cluster/details?clusterName=dev)
 
 ```
-{"level":"info","ts":1662589808.5358994,"logger":"gitops.multi-cluster-fetcher","caller":"fetcher/multi.go:56","msg":"Found clusters","clusters":["management","flux-system/dev"]}
-```
+➜ k get gitopsclusters.gitops.weave.works
 
-## Connecting leaf cluster Kubernetes 1.20 or below
-It is unlikely that you are in this scenario but in this case,
-you just need to follow [how to connect an existing cluster](https://docs.gitops.weave.works/docs/cluster-management/managing-existing-clusters).
+NAME   AGE   READY   STATUS
+dev    19h   True
+```
