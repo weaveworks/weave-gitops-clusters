@@ -21,7 +21,7 @@ if [[ -z "$TOKEN" ]]; then
     exit 1
 fi
 
-envsubst <<EOF
+CONFIG=$(envsubst <<EOF | base64
 apiVersion: v1
 kind: Config
 clusters:
@@ -39,4 +39,16 @@ contexts:
     cluster: $CLUSTER_NAME
     user: $CLUSTER_NAME
 current-context: $CLUSTER_NAME
+EOF
+)
+
+
+envsubst <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: $CLUSTER_NAME-kubeconfig
+  namespace: flux-system
+data:
+  value.yaml: $CONFIG
 EOF

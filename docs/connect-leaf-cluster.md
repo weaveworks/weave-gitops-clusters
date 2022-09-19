@@ -35,11 +35,11 @@ This will create all the necessary service accounts, tokens, and role bindings n
 ### Step 2 - add leaf cluster to management cluster
 First create a sops encoded leaf kubeconfig and add it to the management clusters `k8s/secrets` directory
 ```bash
-CLUSTER_NAME=leaf-01 \
+export CLUSTER_NAME=leaf-01
 CA_CERTIFICATE_DATA=<base64-encoded-cert> \
 ENDPOINT=<control-plane-ip-address> \
-TOKEN=<token> ./k8s/config/leaf-cluster/create-kubeconfig.sh > k8s/secrets/internal-dev-gke/leaf-01-kubeconfig.yaml
-sops -e -i k8s/secrets/internal-dev-gke/leaf-01-kubeconfig.yaml
+TOKEN=<token> ./k8s/config/leaf-cluster/create-kubeconfig-secret.sh > k8s/secrets/internal-dev-gke/$CLUSTER_NAME-kubeconfig.yaml
+sops -e -i k8s/secrets/internal-dev-gke/$CLUSTER_NAME-kubeconfig.yaml
 ```
 
 Then create a `clusters` directory under the the management clusters `k8s/clusters` directory
