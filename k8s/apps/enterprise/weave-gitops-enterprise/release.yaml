@@ -45,8 +45,9 @@ spec:
         clientCredentialsSecret: oidc-auth
     policy-agent:
       enabled: true
-      accountId: weaveworks
-      clusterId: ${policyAgentClusterId}
+      config:
+        accountId: weaveworks
+        clusterId: ${policyAgentClusterId:=wge-dev}
     tls:
       enabled: false
     enablePipelines: true
