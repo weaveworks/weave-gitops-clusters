@@ -43,6 +43,10 @@ spec:
         issuerURL: https://${dexDomain}
         redirectURL: https://${gitopsDomain}/oauth2/callback
         clientCredentialsSecret: oidc-auth
+    policy-agent:
+      enabled: true
+      accountId: weaveworks
+      clusterId: ${policyAgentClusterId}
     tls:
       enabled: false
     enablePipelines: true
