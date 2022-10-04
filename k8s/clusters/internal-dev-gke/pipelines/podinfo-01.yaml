@@ -22,4 +22,4 @@ spec:
           clusterRef:
             kind: GitopsCluster
             name: prod
-            namespace: flux-system
+            namespace: default
