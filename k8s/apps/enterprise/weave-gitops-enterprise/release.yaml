@@ -35,9 +35,6 @@ spec:
         - path: /*
           pathType: ImplementationSpecific
     config:
-      capi:
-        clusters:
-          namespace: flux-system
       oidc:
         enabled: true
         issuerURL: https://${dexDomain}
