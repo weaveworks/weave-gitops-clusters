@@ -2,7 +2,7 @@ apiVersion: gitops.weave.works/v1alpha1
 kind: GitopsCluster
 metadata:
   name: prod
-  namespace: flux-system
+  namespace: default
 spec:
   secretRef:
     name: leaf-02-kubeconfig
