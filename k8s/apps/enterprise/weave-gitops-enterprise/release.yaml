@@ -35,6 +35,8 @@ spec:
         - path: /*
           pathType: ImplementationSpecific
     config:
+      capi:
+        repositoryURL: https://github.com/weaveworks/weave-gitops-clusters
       oidc:
         enabled: true
         issuerURL: https://${dexDomain}
