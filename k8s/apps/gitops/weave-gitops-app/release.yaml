@@ -56,3 +56,6 @@ spec:
       requests:
         cpu: 100m
         memory: 64Mi
+    envVars:
+    - name: WEAVE_GITOPS_FEATURE_TELEMETRY
+      value: "true"
