@@ -22,6 +22,7 @@ spec:
       dexDomain: dex.internal-dev.wego-gke.weave.works
       gitopsDomain: gitops.internal-dev.wego-gke.weave.works
       policyAgentClusterId: internal-dev
+      cluster: internal-dev-gke
     substituteFrom:
       - kind: Secret
         name: iap-oauth-client
