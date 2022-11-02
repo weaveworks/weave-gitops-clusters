@@ -23,3 +23,7 @@ spec:
             kind: GitopsCluster
             name: prod
             namespace: default
+  promotion:
+    pull-request:
+      url: https://github.com/yiannistri/config
+      secretRef: pipelines-github-auth
