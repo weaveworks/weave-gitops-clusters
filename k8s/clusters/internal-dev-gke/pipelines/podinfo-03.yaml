@@ -26,4 +26,5 @@ spec:
   promotion:
     pull-request:
       url: https://github.com/yiannistri/config
-      secretRef: pipelines-github-auth
+      secretRef:
+        name: pipelines-github-auth
