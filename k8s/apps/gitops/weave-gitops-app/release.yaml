@@ -24,7 +24,7 @@ spec:
         value: "true"
     image:
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1667555362-8bd4edcc36f6185fd8cb32960e3fcc51dac053a7 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1667580131-516e53a369d8ee4c10a1723dfc57aa1daeaae2c5 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
@@ -46,10 +46,10 @@ spec:
       annotations:
         networking.gke.io/managed-certificates: gitops-cert # must match name tls-certs.yaml
       hosts:
-      - host: ${gitopsDomain}
-        paths:
-        - path: /*
-          pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
+        - host: ${gitopsDomain}
+          paths:
+            - path: /*
+              pathType: ImplementationSpecific # ImplementationSpecific => let the lb decide
     metrics:
       enabled: true
     resources:
