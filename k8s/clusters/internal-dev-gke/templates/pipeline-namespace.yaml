@@ -30,9 +30,9 @@ spec:
       description: Name of the secret containing PAT for Git
   resourcetemplates:
     - apiVersion: pipelines.weave.works/v1alpha1
-      kind: ${PIPELINE_NAME}
+      kind: pipeline
       metadata:
-        name: ${PIPELINE_NAME}
+        name: ${RESOURCE_NAME}
         namespace: ${PIPELINE_NAMESPACE}
       spec:
         appRef:
