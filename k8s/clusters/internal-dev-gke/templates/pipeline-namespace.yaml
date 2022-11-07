@@ -13,9 +13,10 @@ spec:
   description: Creates an application Pipeline
   params:
   #metadata
-    - name: PIPELINE_NAME
+    - name: RESOURCE_NAME
       description: Name of Pipeline
     - name: PIPELINE_NAMESPACE
+      description: Namespace for Pipeline
   #Appdata
     - name: APP_NAME
       description: Name of the HelmRelease for your application
