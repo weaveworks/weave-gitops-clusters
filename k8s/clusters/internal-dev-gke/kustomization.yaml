@@ -5,6 +5,7 @@ resources:
 - apps.yaml
 - canaries.yaml
 - infrastructure.yaml
+- profiles.yaml
 - policies.yaml
 - secrets.yaml
 - templates.yaml
