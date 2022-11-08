@@ -1,0 +1,50 @@
+apiVersion: pipelines.weave.works/v1alpha1
+kind: pipeline
+metadata:
+  annotations:
+    templates.weave.works/create-request: '{"head_branch":"wge-create-branch-bp12yi","title":"Creates
+      resource podinfo","description":"This PR creates a pipeline instance","template_name":"pipeline","parameter_values":{"APP_NAME":"podinfo","APP_NAMESPACE":"default","APP_REPO_BRANCH":"foo","APP_REPO_URL":"bar","GIT_TOKEN_SECRET":"baz","PIPELINE_NAMESPACE":"default","RESOURCE_NAME":"podinfo"},"commit_message":"Creates
+      pipeline instance","template_namespace":"default"}'
+  labels:
+    templates.weave.works/template-name: pipeline
+    templates.weave.works/template-namespace: default
+  name: podinfo
+  namespace: default
+promotion:
+  pull-request:
+    branch: foo
+    secretRef:
+      name: baz
+    url: bar
+spec:
+  appRef:
+    apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: HelmRelease
+    name: podinfo
+  environments:
+  - name: dev
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: dev
+        namespace: flux-system
+      namespace: default
+  - name: test
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: QA
+        namespace: flux-system
+      namespace: default
+    - clusterRef:
+        kind: GitopsCluster
+        name: Perf
+        namespace: flux-system
+      namespace: default
+  - name: prod
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: prod
+        namespace: flux-system
+      namespace: default
