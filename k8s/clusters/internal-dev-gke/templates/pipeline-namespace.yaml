@@ -15,7 +15,7 @@ spec:
   #metadata
     - name: RESOURCE_NAME
       description: Name of Pipeline
-    - name: PIPELINE_NAMESPACE
+    - name: RESOURCE_NAMESPACE
       description: Namespace for Pipeline
   #Appdata
     - name: APP_NAME
@@ -28,7 +28,19 @@ spec:
       description: Branch to write updates to in Git
     - name: GIT_TOKEN_SECRET
       description: Name of the secret containing PAT for Git
+    - name: HOST_URL
+      description: host
+    - name: ENV_NAME
+      description: env
   resourcetemplates:
+    - apiVersion: notification.toolkit.fluxcd.io/v1beta1
+      kind: Provider
+      metadata:
+        name: ${RESOURCE_NAME}
+        namespace: ${RESOURCE_NAMESPACE}
+      spec:
+        address: http://${HOST_URL}/default/${RESOURCE_NAME}/${ENV_NAME}
+        type: generic
     - apiVersion: pipelines.weave.works/v1alpha1
       kind: pipeline
       metadata:
@@ -72,3 +84,4 @@ spec:
           secretRef:
             name: ${GIT_TOKEN_SECRET}
           url: ${APP_REPO_URL}
+        
