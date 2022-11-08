@@ -1,0 +1,50 @@
+apiVersion: pipelines.weave.works/v1alpha1
+kind: pipeline
+metadata:
+  annotations:
+    templates.weave.works/create-request: '{"head_branch":"wge-create-branch-rr9xy2","title":"Creates
+      resource asd","description":"This PR creates a pipeline instance","template_name":"pipeline","parameter_values":{"APP_NAME":"asd","APP_NAMESPACE":"asd","APP_REPO_BRANCH":"asd","APP_REPO_URL":"asd","GIT_TOKEN_SECRET":"asd","PIPELINE_NAMESPACE":"asd","RESOURCE_NAME":"asd"},"commit_message":"Creates
+      pipeline instance","template_namespace":"default"}'
+  labels:
+    templates.weave.works/template-name: pipeline
+    templates.weave.works/template-namespace: default
+  name: asd
+  namespace: asd
+promotion:
+  pull-request:
+    branch: asd
+    secretRef:
+      name: asd
+    url: asd
+spec:
+  appRef:
+    apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: HelmRelease
+    name: asd
+  environments:
+  - name: dev
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: dev
+        namespace: flux-system
+      namespace: asd
+  - name: test
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: QA
+        namespace: flux-system
+      namespace: asd
+    - clusterRef:
+        kind: GitopsCluster
+        name: Perf
+        namespace: flux-system
+      namespace: asd
+  - name: prod
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: prod
+        namespace: flux-system
+      namespace: asd
