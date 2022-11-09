@@ -1,0 +1,46 @@
+apiVersion: pipelines.weave.works/v1alpha1
+kind: pipeline
+metadata:
+  annotations:
+    templates.weave.works/create-request: '{"head_branch":"wge-create-branch-6flcfb","title":"Creates
+      resource podinfo","description":"This PR creates a pr-promotion-namespace-tenancy
+      instance","template_name":"pr-promotion-namespace-tenancy","parameter_values":{"APP_NAME":"podinfo","APP_NAMESPACE":"team-a","APP_REPO_BRANCH":"main","APP_REPO_URL":"https://github.com/org/repo","GIT_CREDENTIALS_SECRET":"secrety","RESOURCE_NAME":"podinfo","RESOURCE_NAMESPACE":"team-a"},"commit_message":"Creates
+      pr-promotion-namespace-tenancy instance","template_namespace":"flux-system","template_kind":"GitOpsTemplate"}'
+  labels:
+    templates.weave.works/template-name: pr-promotion-namespace-tenancy
+    templates.weave.works/template-namespace: default
+  name: podinfo
+  namespace: team-a
+spec:
+  appRef:
+    apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: helmrelease
+    name: podinfo
+  environments:
+  - name: dev
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: Dev
+        namespace: flux-system
+      namespace: team-a
+  - name: test
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: Test
+        namespace: flux-system
+      namespace: team-a
+  - name: prod
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: Prod
+        namespace: flux-system
+      namespace: team-a
+  promotion:
+    pull-request:
+      branch: main
+      name: secrety
+      secretRef: null
+      url: https://github.com/org/repo
