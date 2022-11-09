@@ -14,7 +14,7 @@ spec:
   params:
   #metadata
     - name: PIPELINE_NAME
-      description: Name of Pipeline (podinfo-02)
+      description: [Test](https://docs.gitops.weave.works)
     - name: PIPELINE_NAMESPACE
       description: Namespace for Pipeline (flux-system)
   #Appdata
