@@ -1,0 +1,60 @@
+apiVersion: clustertemplates.weave.works/v1alpha1
+kind: GitOpsTemplate
+metadata:
+  name: pipeline-helm-release
+  namespace: flux-system
+  annotations:
+    # These annotations remove irrelevant fields for Pipeline creation.
+    # In a future release, this will become the default behaviour and
+    # they could be removed from this template.
+    templates.weave.works/profiles-enabled: false
+    templates.weave.works/kustomizations-enabled: false
+    templates.weave.works/credentials-enabled: false
+  labels:
+    # This label determines the "Type" value for listing Templates in
+    # the dashboard.
+    weave.works/template-type: application
+spec:
+  description: Creates a sample HelmRelease to work with Pipelines
+  params:
+    # Pipeline parameters
+    - name: RESOURCE_NAME # Required parameter name for a valid template
+      description: Name for the generated HelmRelease
+    - name: RESOURCE_NAMESPACE 
+      description: Namespace for the generated HelmRelease
+    - name: CHART_NAME
+      description: Helm Chart to deploy
+    - name: SOURCE_TYPE
+      options: ['GitRepository', 'HelmRepository']
+    - name: SOURCE_NAME
+      description: Name of the source object for your Helm Chart
+    - name: INITIAL_VERSION
+      description: Chart Version to deploy initially before any promotions
+    - name: VALUES_KIND
+      options: ['configmap', 'secret']
+    - name: VALUES_NAME
+      description: Name of the resource containing values.yaml
+    - name: ENV_NAME
+      descripton: Environment within the pipeline for this HelmRelease
+  resourcetemplates:
+  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: HelmRelease
+    metadata:
+      name: ${RESOURCE_NAME}
+      namespace: ${RESOURCE_NAMESPACE}
+    spec:
+      targetNamespace: ${RESOURCE_NAMESPACE}
+      chart:
+        spec:
+        chart: ${CHART_NAME}
+        reconcileStrategy: ChartVersion
+        sourceRef:
+            kind: ${SOURCE_TYPE}
+            name: ${SOURCE_NAME}
+            namespace: ${RESOURCE_NAMESPACE}
+        version: '${INITIAL_VERSION}' #{"$promotion": "${PIPELINE_NAMESPACE}:${PIPELINE_NAME}:${ENV_NAME}"}
+      interval: 10m0s
+      releaseName: ${RESOURCE_NAME}
+      values:
+        kind: ${VALUES_KIND}
+        name: ${VALUES_NAME}
