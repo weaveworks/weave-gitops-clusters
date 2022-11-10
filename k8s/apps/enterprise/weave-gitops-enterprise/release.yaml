@@ -21,6 +21,8 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    global:
+      useK8sCachedClients: true
     service:
       annotations:
         beta.cloud.google.com/backend-config: '{"default": "enterprise-lb-backend-config"}'
