@@ -20,3 +20,21 @@ metadata:
 spec:
   redirectToHttps:
     enabled: true
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: pipeline-promotion-lb-backend-config
+  namespace: flux-system
+spec:
+  healthCheck:
+    requestPath: /healthz
+---
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: pipeline-promotion-lb-frontend-config
+  namespace: flux-system
+spec:
+  redirectToHttps:
+    enabled: true
