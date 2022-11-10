@@ -14,7 +14,7 @@ spec:
   params:
   #metadata
     - name: PIPELINE_NAME
-      description: [Test](https://docs.gitops.weave.works)
+      description: More info <https://docs.gitops.weave.works>
     - name: PIPELINE_NAMESPACE
       description: Namespace for Pipeline (flux-system)
   #Appdata
