@@ -47,6 +47,17 @@ spec:
       config:
         accountId: weaveworks
         clusterId: ${policyAgentClusterId:=wge-dev}
+    pipeline-controller:
+      promotion:
+        ingress:
+          enabled: true
+          annotations:
+            networking.gke.io/managed-certificates: ${promotions_cert_name:=promotions-cert}
+          hosts:
+          - host: promotions.${gitopsDomain}
+            paths:
+            - path: /*
+              pathType: ImplementationSpecific
     tls:
       enabled: false
     enablePipelines: true
