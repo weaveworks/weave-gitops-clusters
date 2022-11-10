@@ -51,6 +51,11 @@ spec:
           enabled: false
     pipeline-controller:
       promotion:
+        service:
+          enabled: true
+          annotations:
+            beta.cloud.google.com/backend-config: '{"default": "dex-lb-backend-config"}'
+            networking.gke.io/v1beta1.FrontendConfig: dex-lb-frontend-config
         ingress:
           enabled: true
           annotations:
