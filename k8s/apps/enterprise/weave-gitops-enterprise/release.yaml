@@ -47,6 +47,8 @@ spec:
       config:
         accountId: weaveworks
         clusterId: ${policyAgentClusterId:=wge-dev}
+        admission:
+          enabled: false
     pipeline-controller:
       promotion:
         ingress:
