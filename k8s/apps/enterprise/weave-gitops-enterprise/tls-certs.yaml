@@ -5,3 +5,11 @@ metadata:
 spec:
   domains:
     - ${gitopsDomain}
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: ${promotions_cert_name:=promotions-cert}
+spec:
+  domains:
+    - promotions.${gitopsDomain}
