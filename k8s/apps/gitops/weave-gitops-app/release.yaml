@@ -24,7 +24,7 @@ spec:
         value: "true"
     image:
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1668093606-f523cb976566dd4f7faea414ad7589a8e0a5c5fe # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1668106894-4be32e5fec00e774bd2e07e79ed240e24c44edbe # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
@@ -60,5 +60,5 @@ spec:
         cpu: 100m
         memory: 64Mi
     envVars:
-    - name: WEAVE_GITOPS_FEATURE_TELEMETRY
-      value: "true"
+      - name: WEAVE_GITOPS_FEATURE_TELEMETRY
+        value: "true"
