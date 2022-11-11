@@ -52,10 +52,6 @@ spec:
         admission:
           enabled: false
     pipeline-controller:
-      controller:
-        manager:
-          image:
-            tag: v0.0.5-dirty
       promotion:
         service:
           enabled: true
