@@ -20,7 +20,7 @@ spec:
     # Pipeline parameters
     - name: RESOURCE_NAME # Required parameter name for a valid template
       description: Name for the generated HelmRelease
-    - name: RESOURCE_NAMESPACE 
+    - name: RESOURCE_NAMESPACE
       description: Namespace for the generated HelmRelease
     - name: CHART_NAME
       description: Helm Chart to deploy
@@ -37,24 +37,24 @@ spec:
     - name: ENV_NAME
       description: Environment within the pipeline for this HelmRelease
   resourcetemplates:
-  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-    kind: HelmRelease
-    metadata:
-      name: ${RESOURCE_NAME}
-      namespace: ${RESOURCE_NAMESPACE}
-    spec:
-      targetNamespace: ${RESOURCE_NAMESPACE}
-      chart:
-        spec:
-        chart: ${CHART_NAME}
-        reconcileStrategy: ChartVersion
-        sourceRef:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      metadata:
+        name: ${RESOURCE_NAME}
+        namespace: ${RESOURCE_NAMESPACE}
+      spec:
+        targetNamespace: ${RESOURCE_NAMESPACE}
+        chart:
+          spec:
+          chart: ${CHART_NAME}
+          reconcileStrategy: ChartVersion
+          sourceRef:
             kind: ${SOURCE_TYPE}
             name: ${SOURCE_NAME}
             namespace: ${RESOURCE_NAMESPACE}
-        version: '${INITIAL_VERSION}' #{"$promotion": "${PIPELINE_NAMESPACE}:${PIPELINE_NAME}:${ENV_NAME}"}
-      interval: 10m0s
-      releaseName: ${RESOURCE_NAME}
-      values:
-        kind: ${VALUES_KIND}
-        name: ${VALUES_NAME}
+          version: '${INITIAL_VERSION}' #{"$promotion": "${PIPELINE_NAMESPACE}:${PIPELINE_NAME}:${ENV_NAME}"}
+        interval: 10m0s
+        releaseName: ${RESOURCE_NAME}
+        values:
+          kind: ${VALUES_KIND}
+          name: ${VALUES_NAME}
