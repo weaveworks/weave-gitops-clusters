@@ -49,16 +49,16 @@ spec:
   secretRef:
     name: promotion-credentials
 ---
-# apiVersion: notification.toolkit.fluxcd.io/v1beta1
-# kind: Alert
-# metadata:
-#   name: podinfo-02-dev-githubdispatch
-#   namespace: flux-system
-# spec:
-#   eventSeverity: info
-#   eventSources:
-#   - kind: Pipeline
-#     name: podinfo-02
-#     namespace: flux-system
-#   providerRef:
-#     name: podinfo-02-dev-githubdispatch
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: podinfo-02-dev-githubdispatch
+  namespace: flux-system
+spec:
+  eventSeverity: info
+  eventSources:
+  - kind: Pipeline
+    name: podinfo-02
+    namespace: flux-system
+  providerRef:
+    name: podinfo-02-dev-githubdispatch
