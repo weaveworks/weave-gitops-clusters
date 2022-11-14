@@ -11,3 +11,11 @@ patches:
   target:
     kind: ServiceAccount
     name: kustomize-controller
+- patch: |
+    - op: add
+      path: /spec/versions/0/schema/openAPIV3Schema/properties/spec/properties/eventSources/items/properties/kind/enum/-
+      value: Pipeline
+  target:
+    kind: CustomResourceDefinition
+    name:  alerts.notification.toolkit.fluxcd.io
+ 
