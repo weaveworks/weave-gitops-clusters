@@ -1,7 +1,5 @@
 on:
   repository_dispatch:
-    types:
-      - webhook
     
 jobs:
   promote:
