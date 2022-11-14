@@ -1,0 +1,14 @@
+on:
+  repository_dispatch:
+    types:
+      - webhook
+    
+jobs:
+  promote:
+    name: Promotion via webhook
+    runs-on: ubuntu-latest
+    
+    steps:
+    - env:
+          MESSAGE: ${{ github.event.client_payload.message }}
+      run: echo $MESSAGE
