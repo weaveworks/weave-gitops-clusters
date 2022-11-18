@@ -71,3 +71,4 @@ spec:
       enabled: false
     enablePipelines: true
     enableTerraformUI: true
+    enableRunUI: true
