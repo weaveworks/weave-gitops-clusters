@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  annotations:
+    templates.weave.works/create-request: '{"head_branch":"wge-create-branch-peztec","title":"Creates
+      resource name","description":"This PR creates a pipeline-helm-release instance","template_name":"pipeline-helm-release","parameter_values":{"CHART_NAME":"podinfo","INITIAL_VERSION":"6.1.0","PROMOTION_MARKER":"#{\"$promotion\":
+      \"${PIPELINE_NAMESPACE}:${PIPELINE_NAME}:${ENV_NAME}\"}","RESOURCE_NAME":"name","RESOURCE_NAMESPACE":"namespace","SOURCE_NAME":"podinfo","SOURCE_TYPE":"HelmRepository","VALUES_KIND":"configmap","VALUES_NAME":"config"},"commit_message":"Creates
+      pipeline-helm-release instance","credentials":{},"template_namespace":"flux-system","template_kind":"GitOpsTemplate"}'
+  labels:
+    templates.weave.works/template-name: pipeline-helm-release
+    templates.weave.works/template-namespace: default
+  name: name
+  namespace: namespace
+spec:
+  chart:
+    chart: podinfo
+    reconcileStrategy: ChartVersion
+    sourceRef:
+      kind: HelmRepository
+      name: podinfo
+      namespace: namespace
+    spec: null
+    version: 6.1.0
+  interval: 10m0s
+  releaseName: name
+  targetNamespace: namespace
+  values:
+    kind: configmap
+    name: config
