@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: tf-controller
-      version: '>=0.7.0'
+      version: '>=0.9.2'
       sourceRef:
         kind: HelmRepository
         name: tf-controller
@@ -31,7 +31,9 @@ spec:
     caCertValidityDuration: 24h
     certRotationCheckFrequency: 30m
     image:
-      tag: v0.13.0-rc.1
+      tag: v0.13.1
     runner:
       image:
-        tag: v0.13.0-rc.1
+        tag: v0.13.1
+    awsPackage:
+      tag: v4.38.0-v1alpha11
