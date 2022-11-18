@@ -35,7 +35,7 @@ spec:
     - name: VALUES_NAME
       description: Name of the resource containing values.yaml
     - name: ENV_NAME
-      descripton: Environment within the pipeline for this HelmRelease
+      description: Environment within the pipeline for this HelmRelease
     - name: PROMOTION_MARKER
       description: test
       default: '#{"$promotion": "${PIPELINE_NAMESPACE}:${PIPELINE_NAME}:${ENV_NAME}"}'
