@@ -1,0 +1,39 @@
+apiVersion: pipelines.weave.works/v1alpha1
+kind: pipeline
+metadata:
+  annotations:
+    templates.weave.works/create-request: '{"head_branch":"wge-create-branch-5rfef","title":"Creates
+      resource asd","description":"This PR creates a visualization-example instance","template_name":"visualization-example","parameter_values":{"APP_NAME":"asd","APP_NAMESPACE":"asd","DEV_CLUSTER_NAME":"asd","DEV_CLUSTER_NAMESPACE":"asd","PROD_CLUSTER_NAME":"asd","PROD_CLUSTER_NAMESPACE":"asd","RESOURCE_NAME":"asd","RESOURCE_NAMESPACE":"asd","TEST_CLUSTER_NAME":"asd","TEST_CLUSTER_NAMESPACE":"asd"},"commit_message":"Creates
+      visualization-example instance","credentials":{},"template_namespace":"flux-system","template_kind":"GitOpsTemplate"}'
+  labels:
+    templates.weave.works/template-name: visualization-example
+    templates.weave.works/template-namespace: default
+  name: asd
+  namespace: asd
+spec:
+  appRef:
+    apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: helmrelease
+    name: asd
+  environments:
+  - name: dev
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: asd
+        namespace: asd
+      namespace: asd
+  - name: test
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: asd
+        namespace: asd
+      namespace: asd
+  - name: prod
+    targets:
+    - clusterRef:
+        kind: GitopsCluster
+        name: asd
+        namespace: asd
+      namespace: asd
