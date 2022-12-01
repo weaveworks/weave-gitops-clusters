@@ -17,9 +17,7 @@ spec:
   summary: "production cluster"
   providerRef:
     name: slack
-  eventSeverity: info
+  eventSeverity: error
   eventSources:
     - kind: GitRepository
-      name: '*'
-    - kind: Kustomization
-      name: '*'
+      name: 'weave-gitops-enterprise'
