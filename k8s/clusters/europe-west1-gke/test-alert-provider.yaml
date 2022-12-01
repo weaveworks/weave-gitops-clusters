@@ -6,8 +6,7 @@ metadata:
 spec:
   type: slack
   channel: general
-  secretRef:
-    name: slack-url
+  address: https://site.org
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
