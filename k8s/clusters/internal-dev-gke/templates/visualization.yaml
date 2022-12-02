@@ -10,7 +10,6 @@ spec:
   params:
     - name: RESOURCE_NAME 
       description: Name of the Pipeline
-      default: 
     - name: RESOURCE_NAMESPACE
       description: Namespace for the Pipeline on the management cluster
       default: flux-system
