@@ -12,24 +12,22 @@ spec:
       description: Name of the Pipeline
     - name: RESOURCE_NAMESPACE
       description: Namespace for the Pipeline on the management cluster
+      default: default
+    - name: APPLICATION_NAME
+      description: Name of the Helm Release objects
+    - name: FIRST_APPLICATION_NAMESPACE
+      description: Namespace for this application in the first cluster
       default: flux-system
     - name: FIRST_CLUSTER_NAME
       description: Name of GitopsCluster object for the first environment
     - name: FIRST_CLUSTER_NAMESPACE
       description: Namespace where this object exists
       default: default
-    - name: FIRST_APPLICATION_NAME
-      description: Name of the HelmRelease for your application in the first environment
-    - name: FIRST_APPLICATION_NAMESPACE
-      description: Namespace for this application
-      default: flux-system
     - name: SECOND_CLUSTER_NAME
       description: Name of GitopsCluster object for the second environment
     - name: SECOND_CLUSTER_NAMESPACE
       description: Namespace where this object exists
       default: default
-    - name: SECOND_APPLICATION_NAME
-      description: Name of the HelmRelease for your application in the second environment
     - name: SECOND_APPLICATION_NAMESPACE
       description: Namespace for this application
       default: flux-system
