@@ -11,7 +11,7 @@
 locals {
   # Must match the google group prefix ('@weave.works' appended inline)
   # for team list see https://groups.google.com/all-groups?q=team
-  ww_engineering_teams = [
+  ww_engineering_teams = concat([
     for team in [
       "bluetonium",
       "denim",
@@ -25,7 +25,9 @@ locals {
       "timber-wolf",
     ] :
     "team-${team}@weave.works"
-  ]
+  ], [
+    "department-engineering-employees@weave.works"
+  ])
 }
 
 resource "google_iap_brand" "weave_gitops" {
