@@ -23,6 +23,7 @@ spec:
     - name: SECRET_REF
       description: Required credentials for HMAC PROVIDER_TYPE
       required: false
+      default: ""
   resourcetemplates:
   - apiVersion: notification.toolkit.fluxcd.io/v1beta1
     kind: Provider
