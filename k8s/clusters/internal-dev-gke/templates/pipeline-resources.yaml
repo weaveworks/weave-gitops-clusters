@@ -1,29 +1,20 @@
-apiVersion: clustertemplates.weave.works/v1alpha1
+apiVersion: templates.weave.works/v1alpha1
 kind: GitOpsTemplate
 metadata:
-  name: pipeline-leaf-cluster-resources
+  name: pipeline-notification-resources
   namespace: flux-system
-  annotations:
-    # These annotations remove irrelevant fields for Pipeline creation.
-    # In a future release, this will become the default behaviour and
-    # they could be removed from this template.
-    templates.weave.works/profiles-enabled: false
-    templates.weave.works/kustomizations-enabled: false
-    templates.weave.works/credentials-enabled: false
   labels:
-    # This label determines the "Type" value for listing Templates in
-    # the dashboard.
-    weave.works/template-type: application
+    weave.works/template-type: application # These are generic Flux resources rather than Pipeline-specific
 spec:
-  description: Creates flux notification controller resources required for promoting applications via pipelines.
+  description: Creates flux notification controller resources for a cluster, required for promoting applications via pipelines.
   params:
     # Pipeline parameters
-    - name: RESOURCE_NAME # Required parameter name for a valid template
-      description: Name for the generated objects, should match the target Application (Helm Release) name.
+    - name: RESOURCE_NAME 
+      description: Name for the generated objects, should match the target Application (HelmRelease) name.
     - name: RESOURCE_NAMESPACE # Required parameter name for a valid template
-      description: Namespace for the generated objects, should match the target Application (Helm Release) namespace.
+      description: Namespace for the generated objects, should match the target Application (HelmRelease) namespace.
     - name: HOST_URL # Required parameter name for a valid template
-      description: URL for the promotion webhook on the management cluster
+      description: Exposed URL for the promotion webhook on the management cluster
     - name: ENV_NAME
       description: Environment the cluster is a part of within a pipeline.
   resourcetemplates:
@@ -38,7 +29,7 @@ spec:
   - apiVersion: notification.toolkit.fluxcd.io/v1beta1
     kind: Alert
     metadata:
-      name: ${RESORUCE_NAME}
+      name: ${RESOURCE_NAME}
       namespace: ${RESOURCE_NAMESPACE}
     spec:
       providerRef:
