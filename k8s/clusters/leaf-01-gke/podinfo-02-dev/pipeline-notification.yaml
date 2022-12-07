@@ -1,3 +1,13 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hmac-secret
+  namespace: flux-secret
+type: Opaque
+data:
+  token: dndTM0Fkbm5VJmFUWk5HSQ==
+---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
