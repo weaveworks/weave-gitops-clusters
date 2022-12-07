@@ -12,10 +12,10 @@ kind: Provider
 metadata:
   name: podinfo-02-dev
 spec:
-  type: generic
+  type: generic-hmac
   address: https://promotions.gitops.internal-dev.wego-gke.weave.works/promotion/flux-system/podinfo-02/dev
-#   secretRef:
-#     name: hmac-secret
+  secretRef:
+    name: hmac-secret
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
