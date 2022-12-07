@@ -1,3 +1,13 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hmac-secret
+  namespace: flux-system
+type: Opaque
+data:
+  hmac-key: dndTM0Fkbm5VJmFUWk5HSQ==
+---
 apiVersion: pipelines.weave.works/v1alpha1
 kind: Pipeline
 metadata:
@@ -8,6 +18,8 @@ spec:
     apiVersion: helm.toolkit.fluxcd.io/v2beta1
     kind: HelmRelease
     name: podinfo
+    secretRef:
+      name: hmac-secret
   environments:
     - name: dev
       targets:
