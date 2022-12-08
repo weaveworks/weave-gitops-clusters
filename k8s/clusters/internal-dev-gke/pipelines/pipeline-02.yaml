@@ -18,8 +18,6 @@ spec:
     apiVersion: helm.toolkit.fluxcd.io/v2beta1
     kind: HelmRelease
     name: podinfo
-    secretRef:
-      name: hmac-secret
   environments:
     - name: dev
       targets:
@@ -48,6 +46,8 @@ spec:
             name: prod
             namespace: default
   promotion:
+    secretRef:
+      name: hmac-secret
     notification: {}
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
