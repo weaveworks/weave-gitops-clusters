@@ -14,6 +14,9 @@ subjects:
   - kind: Group
     name: department-engineering-employees@weave.works
     apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: department-dx-employees@weave.works
+    apiGroup: rbac.authorization.k8s.io
 ---
 #
 # static admin

@@ -16,7 +16,6 @@ locals {
       "bluetonium",
       "denim",
       "flux",
-      "frostbite",
       "gitops-design",
       "pesto",
       "pitch-black",
@@ -26,7 +25,8 @@ locals {
     ] :
     "team-${team}@weave.works"
   ], [
-    "department-engineering-employees@weave.works"
+    "department-engineering-employees@weave.works",
+    "department-dx-employees@weave.works",
   ])
 }
 
