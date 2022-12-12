@@ -25,6 +25,7 @@ spec:
             namespace: default
   promotion:
     pull-request:
+      type: github
       url: https://github.com/weaveworks/weave-gitops-clusters
       secretRef:
         name: promotion-credentials
