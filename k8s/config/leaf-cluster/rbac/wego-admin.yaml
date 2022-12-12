@@ -11,7 +11,10 @@ subjects:
     name: wego-admin
     apiGroup: rbac.authorization.k8s.io
   - kind: Group
-    name: department-engineering-employees@weave.works # added for Google OIDC support
+    name: department-engineering-employees@weave.works
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: department-dx-employees@weave.works
     apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
@@ -23,27 +26,18 @@ kind: ClusterRole
 metadata:
   name: wego-admin-cluster-role
 rules:
-  - apiGroups: [""]
-    resources: ["secrets", "pods"]
-    verbs: ["get", "list"]
-  - apiGroups: ["apps"]
-    resources: ["deployments", "replicasets"]
-    verbs: ["get", "list"]
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
   - apiGroups: ["kustomize.toolkit.fluxcd.io"]
-    resources: ["kustomizations"]
-    verbs: ["get", "list", "patch"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "patch"]
   - apiGroups: ["helm.toolkit.fluxcd.io"]
-    resources: ["helmreleases"]
-    verbs: ["get", "list", "patch"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "patch"]
   - apiGroups: ["source.toolkit.fluxcd.io"]
-    resources: ["buckets", "helmcharts", "gitrepositories", "helmrepositories", "ocirepositories"]
-    verbs: ["get", "list", "patch"]
-  - apiGroups: [""]
-    resources: ["events"]
-    verbs: ["get", "watch", "list"]
-  - apiGroups: ["pac.weave.works"]
-    resources: ["policies"]
-    verbs: ["get", "list"]
-  - apiGroups: ["apiextensions.k8s.io"]
-    resources: ["customresourcedefinitions"]
-    verbs: ["list"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch", "patch"]
+  - apiGroups: ["infra.contrib.fluxcd.io"]
+    resources: ["*"]
+    verbs: ["get", "watch", "list", "patch"]
