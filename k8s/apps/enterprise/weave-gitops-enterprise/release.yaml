@@ -51,6 +51,13 @@ spec:
           enabled: false
     pipeline-controller:
       promotion:
+        retry:
+          delay: 3
+          maxDelay: 30
+          threshold: 5
+        rateLimit:
+          value: 30
+          internal: 60
         service:
           enabled: true
           annotations:
