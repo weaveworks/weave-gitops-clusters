@@ -57,7 +57,7 @@ spec:
           threshold: 5
         rateLimit:
           value: 30
-          internal: 60
+          interval: 60
         service:
           enabled: true
           annotations:
