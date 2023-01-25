@@ -11,3 +11,4 @@ resources:
 - templates.yaml
 - clusters.yaml
 - pipelines.yaml
+- quickstart.yaml
