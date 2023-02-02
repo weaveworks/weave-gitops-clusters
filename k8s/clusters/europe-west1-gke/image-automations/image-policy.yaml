@@ -1,3 +1,14 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: podinfo-policy
+  namespace: default
+spec:
+  imageRepositoryRef:
+    name: podinfo-repo
+  policy:
+    semver:
+      range: 5.0.x
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
