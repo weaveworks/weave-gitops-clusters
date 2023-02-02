@@ -1,3 +1,11 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: podinfo-repo
+  namespace: default
+spec:
+  image: ghcr.io/stefanprodan/podinfo
+  interval: 1h
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
