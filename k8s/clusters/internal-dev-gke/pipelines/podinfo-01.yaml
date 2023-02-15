@@ -25,6 +25,7 @@ spec:
             namespace: default
   promotion:
     strategy:
+      manual: true
       pull-request:
         type: github
         url: https://github.com/weaveworks/weave-gitops-clusters
