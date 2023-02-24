@@ -16,14 +16,17 @@ and run: mdtoc -inplace gke-cluster/README.md
 
 <!-- toc -->
 - [Creates](#creates)
+- [Requirements](#requirements)
 - [Usage](#usage)
 - [Workspaces](#workspaces)
   - [Workspace naming](#workspace-naming)
+- [Flux bootstrapping](#flux-bootstrapping)
 - [Notes](#notes)
   - [Networking](#networking)
 - [Using Weave GitOps on the cluster](#using-weave-gitops-on-the-cluster)
   - [Access](#access)
   - [Reporting bugs found the GKE cluster](#reporting-bugs-found-the-gke-cluster)
+- [Connect a leaf cluster](#connect-a-leaf-cluster)
 <!-- /toc -->
 
 ## Creates
