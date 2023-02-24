@@ -106,7 +106,7 @@ to be pushed further to a separate project).
 
 ### Access
 
-The Weave GitOps UI should be visible [here](gitops.euw1.wego-gke.weave.work).
+The Weave GitOps UI should be visible [here](https://gitops.euw1.wego-gke.weave.works).
 
 The username and password can be found in 1password under `wego-app-staging`.
 Contact [corp-it](https://github.com/weaveworks/corp/issues) if you do not have access to this.
