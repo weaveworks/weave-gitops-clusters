@@ -73,9 +73,10 @@ created `vars/<new-workspace-name>.tfvars` file.
 Workspaces are currently named after the region they're deployed to. If multiple
 workspaces are needed in the same region they can be created with some suffix.
 
-## Flux bootstraping
+## Flux bootstrapping
 
-Before bootstraping make sure to export the GitHub PAT token for the `weaveworksbot`.  The token is available in 1password.
+Before bootstrapping, make sure to export the GitHub PAT token for the `weaveworksbot`.  The token is available in 1password.
+
 ```bash
 export GITHUB_TOKEN="<weaveworksbot token>"
 make flux-bootstrap
