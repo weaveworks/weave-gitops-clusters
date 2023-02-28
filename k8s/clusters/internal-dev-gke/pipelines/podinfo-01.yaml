@@ -29,5 +29,6 @@ spec:
       pull-request:
         type: github
         url: https://github.com/weaveworks/weave-gitops-clusters
+        baseBranch: main
         secretRef:
           name: promotion-credentials
