@@ -45,11 +45,11 @@ spec:
             kind: GitopsCluster
             name: prod
             namespace: default
-#   promotion:
-#     strategy:
-#       notification: {}
-#       secretRef:
-#         name: hmac-secret
+  promotion:
+    strategy:
+      notification: {}
+      secretRef:
+        name: hmac-secret
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
