@@ -78,4 +78,4 @@ spec:
     enableTerraformUI: true
     enableRunUI: true
     templates-controller:
-      enabled: false
+      enabled: true
