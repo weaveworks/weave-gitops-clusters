@@ -1,0 +1,61 @@
+apiVersion: templates.weave.works/v1alpha2
+kind: GitOpsTemplate
+metadata:
+  name: cluster-template-vcluster
+  namespace: default
+  annotations:
+    templates.weave.works/add-common-bases: "false"
+    templates.weave.works/inject-prune-annotation: "true"
+  labels:
+    weave.works/template-type: cluster
+spec:
+  description: A simple vcluster template
+  params:
+    - name: CLUSTER_NAME
+      required: true
+      description: This is used for the cluster naming.
+    - name: KUBERNETES_VERSION
+      description: Kubernetes version to use for the cluster
+      options: ["1.24.0", "1.25.0"]
+  resourcetemplates:
+    - content:
+      - apiVersion: gitops.weave.works/v1alpha1
+        kind: GitopsCluster
+        metadata:
+          name: "${CLUSTER_NAME}"
+          namespace: default
+        spec:
+          capiClusterRef:
+            name: "${CLUSTER_NAME}"
+      - apiVersion: cluster.x-k8s.io/v1beta1
+        kind: Cluster
+        metadata:
+          name: "${CLUSTER_NAME}"
+          namespace: default
+        spec:
+          controlPlaneRef:
+            apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+            kind: VCluster
+            name: "${CLUSTER_NAME}"
+          infrastructureRef:
+            apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+            kind: VCluster
+            name: "${CLUSTER_NAME}"
+      - apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+        kind: VCluster
+        metadata:
+          name: "${CLUSTER_NAME}"
+          namespace: default
+        spec:
+          controlPlaneEndpoint:
+            host: ""
+            port: 0
+          helmRelease:
+            chart:
+              name: ""
+              repo: ""
+              version: ""
+            values: |-
+              service:
+                type: NodePort
+          kubernetesVersion: "${KUBERNETES_VERSION}"
