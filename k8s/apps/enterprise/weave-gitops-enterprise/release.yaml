@@ -43,12 +43,14 @@ spec:
         redirectURL: https://${gitopsDomain}/oauth2/callback
         clientCredentialsSecret: oidc-auth
     policy-agent:
-      enabled: false
+      enabled: true
       config:
         accountId: weaveworks
         clusterId: ${policyAgentClusterId:=wge-dev}
         admission:
           enabled: false
+        audit:
+          enabled: true
     pipeline-controller:
       promotion:
         retry:
