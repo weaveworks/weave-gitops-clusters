@@ -35,7 +35,6 @@ spec:
         - path: /*
           pathType: ImplementationSpecific
     config:
-      logLevel: debug
       capi:
         repositoryURL: https://github.com/weaveworks/weave-gitops-clusters
       oidc:
@@ -80,6 +79,6 @@ spec:
     enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
-    enableExplorer: true
+    enableExplorer: false
     templates-controller:
       enabled: true
