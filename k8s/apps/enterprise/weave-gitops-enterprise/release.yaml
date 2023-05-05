@@ -79,6 +79,6 @@ spec:
     enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
-    enableExplorer: false
+    enableExplorer: true
     templates-controller:
       enabled: true
