@@ -80,7 +80,7 @@ spec:
               pathType: ImplementationSpecific
     tls:
       enabled: false
-    enablePipelines: false
+    enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
     enableExplorer: true
