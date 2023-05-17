@@ -46,4 +46,4 @@ rules:
     verbs: ["get", "list"]
   - apiGroups: ["helm.toolkit.fluxcd.io"]
     resources: ["helmreleases"]
-    verbs: ["get", "list"]
+    verbs: ["get", "list", "patch"]
