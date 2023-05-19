@@ -16,14 +16,17 @@ and run: mdtoc -inplace gke-cluster/README.md
 
 <!-- toc -->
 - [Creates](#creates)
+- [Requirements](#requirements)
 - [Usage](#usage)
 - [Workspaces](#workspaces)
   - [Workspace naming](#workspace-naming)
+- [Flux bootstrapping](#flux-bootstrapping)
 - [Notes](#notes)
   - [Networking](#networking)
 - [Using Weave GitOps on the cluster](#using-weave-gitops-on-the-cluster)
   - [Access](#access)
   - [Reporting bugs found the GKE cluster](#reporting-bugs-found-the-gke-cluster)
+- [Connect a leaf cluster](#connect-a-leaf-cluster)
 <!-- /toc -->
 
 ## Creates
@@ -35,7 +38,7 @@ and run: mdtoc -inplace gke-cluster/README.md
 * DNS hosted zone
 * Various service accounts
 
-## Requirements 
+## Requirements
 
 - You are part of the group [gcp-weave-gitops-clusters-project-owners](https://console.cloud.google.com/iam-admin/groups/0147n2zr1jupgmu?orgonly=true&organizationId=36144081350&supportedpurview=organizationId). 
 Request [joining via corp](https://github.com/weaveworks/corp/issues/2980)
@@ -58,8 +61,8 @@ corresponding `tfvars` file in `vars/` (once you've run a make command with
 This uses [Terraform Workspaces](https://www.terraform.io/language/state/workspaces#using-workspaces)
 to provide isolation between different environments.
 
-
 To create a new workspace run:
+
 ```bash
 $ make ENV=<new-env> tf-create-workspace
 ```
@@ -73,16 +76,19 @@ created `vars/<new-workspace-name>.tfvars` file.
 Workspaces are currently named after the region they're deployed to. If multiple
 workspaces are needed in the same region they can be created with some suffix.
 
-## Flux bootstraping
+## Flux bootstrapping
 
-Before bootstraping make sure to export the GitHub PAT token for the `weaveworksbot`.  The token is available in 1password.
+Before bootstrapping, make sure to export the GitHub PAT token for the `weaveworksbot`.  The token is available in 1password.
+
 ```bash
 export GITHUB_TOKEN="<weaveworksbot token>"
 make flux-bootstrap
 ```
 
 You might find the following error
+
 ```
+
 CRITICAL: ACTION REQUIRED: gke-gcloud-auth-plugin, which is needed for continued use of kubectl, was not found or is not executable. 
 Install gke-gcloud-auth-plugin for use with kubectl by following https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
 ```
@@ -106,7 +112,7 @@ to be pushed further to a separate project).
 
 ### Access
 
-The Weave GitOps UI should be visible [here](gitops.euw1.wego-gke.weave.work).
+The Weave GitOps UI should be visible [here](https://gitops.euw1.wego-gke.weave.works).
 
 The username and password can be found in 1password under `wego-app-staging`.
 Contact [corp-it](https://github.com/weaveworks/corp/issues) if you do not have access to this.
@@ -123,7 +129,5 @@ If you cannot see that page, contact [corp-it](https://github.com/weaveworks/cor
 
 ## Connect a leaf cluster
 
-Now that you have provisioned your cluster, in the case of playing the role of a leaf cluster, you might 
+Now that you have provisioned your cluster, in the case of playing the role of a leaf cluster, you might
 want to connect it to a mangement clusters. You could read [how to connect a leaf cluster](../docs/connect-leaf-cluster.md).
-
-
