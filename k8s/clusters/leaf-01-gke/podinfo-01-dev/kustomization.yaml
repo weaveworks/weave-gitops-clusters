@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - source.yaml
   - release.yaml
-#   - pipeline-notification.yaml
+  - pipeline-notification.yaml
