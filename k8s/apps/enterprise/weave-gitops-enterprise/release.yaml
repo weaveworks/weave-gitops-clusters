@@ -52,10 +52,6 @@ spec:
         audit:
           enabled: true
     pipeline-controller:
-      controller:
-        manager:
-          image:
-            tag: pr-180-watches
       promotion:
         retry:
           delay: 3
