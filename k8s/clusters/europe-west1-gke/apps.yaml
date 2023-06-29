@@ -13,7 +13,6 @@ spec:
     name: flux-system
   path: ./k8s/apps/gitops
   prune: true
-  validation: client
   decryption:
     provider: sops # required for dex auth decryption
   postBuild:
