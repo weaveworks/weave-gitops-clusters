@@ -35,4 +35,4 @@ spec:
     name: podinfo-v1beta2
   policy:
     semver:
-      range: 0.x.x
+      range: 6.x.x
