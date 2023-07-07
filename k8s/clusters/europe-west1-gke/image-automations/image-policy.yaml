@@ -24,4 +24,15 @@ spec:
   policy:
     numerical:
       order: asc
-
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: podinfo-v1beta2
+  namespace: default
+spec:
+  imageRepositoryRef:
+    name: podinfo-v1beta2
+  policy:
+    semver:
+      range: 0.x.x
