@@ -15,3 +15,12 @@ metadata:
 spec:
   image: img.hephy.pro/examples/howto-kubeconfig-dev
   interval: 20s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: podinfo-v1beta2
+  namespace: default
+spec:
+  image: ghcr.io/stefanprodan/podinfo
+  interval: 1h
