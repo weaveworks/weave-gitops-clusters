@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: image-automations
+  name: image-automation
   namespace: flux-system
 spec:
   interval: 10m
@@ -10,5 +10,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./k8s/clusters/internal-dev-gke/image-automations
+  path: ./k8s/clusters/internal-dev-gke/image-automation
   prune: true
