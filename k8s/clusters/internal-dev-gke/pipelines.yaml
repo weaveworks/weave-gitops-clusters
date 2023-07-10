@@ -12,4 +12,3 @@ spec:
     name: flux-system
   path: ./k8s/clusters/internal-dev-gke/pipelines
   prune: true
-  validation: client
