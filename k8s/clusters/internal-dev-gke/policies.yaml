@@ -13,4 +13,3 @@ spec:
     name: flux-system
   path: ./k8s/clusters/internal-dev-gke/policies
   prune: true
-  validation: client
