@@ -12,4 +12,3 @@ spec:
     name: flux-system
   path: ./k8s/clusters/internal-dev-gke/quickstart
   prune: true
-  validation: client
