@@ -12,3 +12,4 @@ resources:
 - clusters.yaml
 - pipelines.yaml
 - quickstart.yaml
+- image-automations.yaml
