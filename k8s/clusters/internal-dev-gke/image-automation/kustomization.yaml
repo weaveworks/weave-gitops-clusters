@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: default
 resources:
 - image-repositories.yaml
+- image-policies.yaml
