@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: podinfo
+  name: podinfo-image-update-automation
   namespace: default
 spec:
   interval: 30m
