@@ -18,7 +18,7 @@ data "github_repository" "weave_gitops_clusters" {
 }
 
 resource "github_issue" "test" {
-  repository       = github_repository.weave_gitops_clusters.name
+  repository       = data.github_repository.weave_gitops_clusters.name
   title            = "My issue title"
   body             = "The body of my issue"
 }
