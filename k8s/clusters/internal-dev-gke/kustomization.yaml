@@ -8,8 +8,9 @@ resources:
 - profiles.yaml
 - policies.yaml
 - secrets.yaml
-- templates.yaml
 - clusters.yaml
+- templates.yaml
+- terraform.yaml
+- image-automation.yaml
 - pipelines.yaml
 - quickstart.yaml
-- image-automations.yaml
