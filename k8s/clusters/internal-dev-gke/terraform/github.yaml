@@ -13,7 +13,9 @@ spec:
     namespace: flux-system
   varsFrom:
   - kind: Secret
-    name: promotion-credentials 
+    name: promotion-credentials
+    varsKeys:
+    - token:github_token
   runnerPodTemplate:
     spec:
       image: ghcr.io/weaveworks/tf-runner
