@@ -1,0 +1,19 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: github
+  namespace: flux-system
+spec:
+  interval: 10m
+  approvePlan: auto
+  path: ./k8s/clusters/internal-dev-gke/terraform
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  varsFrom:
+  - kind: Secret
+    name: github-token 
+  runnerPodTemplate:
+    spec:
+      image: ghcr.io/weaveworks/tf-runner
