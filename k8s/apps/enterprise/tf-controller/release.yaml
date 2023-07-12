@@ -31,9 +31,9 @@ spec:
     caCertValidityDuration: 24h
     certRotationCheckFrequency: 30m
     image:
-      tag: v0.13.1
+      tag: v0.15.1
     runner:
       image:
-        tag: v0.13.1
+        tag: v0.15.1
     awsPackage:
       tag: v4.38.0-v1alpha11
