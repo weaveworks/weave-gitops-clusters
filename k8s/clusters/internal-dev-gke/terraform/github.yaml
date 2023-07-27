@@ -4,7 +4,7 @@ metadata:
   name: github
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1m
   approvePlan: auto
   path: ./k8s/clusters/internal-dev-gke/terraform
   sourceRef:
