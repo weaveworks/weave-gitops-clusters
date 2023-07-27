@@ -15,7 +15,7 @@ provider "github" {
 
 resource "github_repository" "example" {
   name        = "example"
-  description = "My awesome web page"
+  description = "My awesome new repo"
 
   private = true
 }
