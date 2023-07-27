@@ -17,8 +17,10 @@ data "github_repository" "weave_gitops_clusters" {
   full_name = "weaveworks/weave-gitops-clusters"
 }
 
-resource "github_issue" "test" {
-  repository       = data.github_repository.weave_gitops_clusters.name
-  title            = "My issue title"
-  body             = "The body of my issue"
+resource "github_repository_pull_request" "test" {
+    base_repository = data.github_repository.weave_gitops_clusters.name
+    base_ref        = "main"
+    head_ref        = "yiannistri-patch-1"
+    title           = "feat: Adding more flag"
+    body            = "Added new config map"
 }
