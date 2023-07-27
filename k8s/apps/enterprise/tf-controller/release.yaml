@@ -37,3 +37,5 @@ spec:
         tag: v0.15.1
     awsPackage:
       tag: v4.38.0-v1alpha11
+    branchPlanner:
+      enabled: true
