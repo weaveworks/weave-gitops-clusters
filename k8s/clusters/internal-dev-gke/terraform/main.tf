@@ -21,6 +21,6 @@ resource "github_repository_pull_request" "test" {
     base_repository = data.github_repository.weave_gitops_clusters.name
     base_ref        = "main"
     head_ref        = "yiannistri-patch-1"
-    title           = "feat: Adding more flag"
+    title           = "feat: Adding more flags"
     body            = "Added new config map"
 }
