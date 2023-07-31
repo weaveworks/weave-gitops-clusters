@@ -24,7 +24,7 @@ spec:
             name: prod
             namespace: default
   promotion:
-    manual: true
+    manual: false
     strategy:
       pull-request:
         type: github
