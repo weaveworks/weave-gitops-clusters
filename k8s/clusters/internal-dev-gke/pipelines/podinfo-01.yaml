@@ -1,34 +1,34 @@
-# apiVersion: pipelines.weave.works/v1alpha1
-# kind: Pipeline
-# metadata:
-#   name: podinfo-01
-#   namespace: flux-system
-# spec:
-#   appRef:
-#     apiVersion: helm.toolkit.fluxcd.io/v2beta1
-#     kind: HelmRelease
-#     name: podinfo
-#   environments:
-#     - name: dev
-#       targets:
-#         - namespace: podinfo-01-dev
-#           clusterRef:
-#             kind: GitopsCluster
-#             name: dev
-#             namespace: flux-system
-#     - name: prod
-#       targets:
-#         - namespace: podinfo-01-prod
-#           clusterRef:
-#             kind: GitopsCluster
-#             name: prod
-#             namespace: default
-#   promotion:
-#     manual: true
-#     strategy:
-#       pull-request:
-#         type: github
-#         url: https://github.com/weaveworks/weave-gitops-clusters
-#         baseBranch: main
-#         secretRef:
-#           name: promotion-credentials
+apiVersion: pipelines.weave.works/v1alpha1
+kind: Pipeline
+metadata:
+  name: podinfo-01
+  namespace: flux-system
+spec:
+  appRef:
+    apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    kind: HelmRelease
+    name: podinfo
+  environments:
+    - name: dev
+      targets:
+        - namespace: podinfo-01-dev
+          clusterRef:
+            kind: GitopsCluster
+            name: dev
+            namespace: flux-system
+    - name: prod
+      targets:
+        - namespace: podinfo-01-prod
+          clusterRef:
+            kind: GitopsCluster
+            name: prod
+            namespace: default
+  promotion:
+    manual: true
+    strategy:
+      pull-request:
+        type: github
+        url: https://github.com/weaveworks/weave-gitops-clusters
+        baseBranch: main
+        secretRef:
+          name: promotion-credentials
