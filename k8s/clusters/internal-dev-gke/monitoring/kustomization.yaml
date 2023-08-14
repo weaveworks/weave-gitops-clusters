@@ -5,3 +5,4 @@ resources:
 - source.yaml
 - kube-prometheus-stack.yaml
 - wge-podmonitor.yaml
+- flux-dashboards.yaml
