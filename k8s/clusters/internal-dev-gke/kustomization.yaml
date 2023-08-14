@@ -14,3 +14,4 @@ resources:
 - image-automation.yaml
 - pipelines.yaml
 - quickstart.yaml
+- monitoring.yaml
