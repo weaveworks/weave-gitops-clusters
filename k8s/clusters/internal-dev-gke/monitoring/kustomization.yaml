@@ -4,3 +4,4 @@ namespace: default
 resources:
 - source.yaml
 - kube-prometheus-stack.yaml
+- wge-podmonitor.yaml
