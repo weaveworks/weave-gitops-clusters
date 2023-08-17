@@ -6,3 +6,12 @@ resources:
 #  - objective3.yaml
 #  - objective4-kr1.yaml
 #  - objective4-kr2.yaml
+configMapGenerator:
+  - name: explore-okrs-dashboards
+    files:
+      - dashboards/okrs.json
+    options:
+      labels:
+        grafana_dashboard: "1"
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/component: monitoring
