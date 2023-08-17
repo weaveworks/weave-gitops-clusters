@@ -15,3 +15,4 @@ resources:
 - pipelines.yaml
 - quickstart.yaml
 - monitoring.yaml
+- synthetic-traffic.yaml
