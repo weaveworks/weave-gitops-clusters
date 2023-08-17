@@ -16,6 +16,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
+  dependsOn:
+    - name: kube-prometheus-stack
   sourceRef:
     kind: GitRepository
     name: weave-gitops-quickstart-monitoring
