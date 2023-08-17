@@ -1,3 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: weave-gitops-quickstart-monitoring
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: add-monitoring
+  url: https://github.com/weaveworks/weave-gitops-quickstart
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -5,11 +15,11 @@ metadata:
   name: monitoring
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 1m0s
   dependsOn:
     - name: apps-enterprise
   sourceRef:
     kind: GitRepository
-    name: flux-system
-  path: ./k8s/clusters/internal-dev-gke/monitoring
+    name: weave-gitops-quickstart-monitoring
+  path: ./monitoring
   prune: true

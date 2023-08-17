@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: default
-resources:
-- source.yaml
-- kube-prometheus-stack.yaml
-- wge-podmonitor.yaml
-- flux-dashboards.yaml
