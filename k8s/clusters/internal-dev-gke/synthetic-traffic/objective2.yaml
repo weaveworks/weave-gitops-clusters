@@ -24,6 +24,8 @@ spec:
               imagePullPolicy: IfNotPresent
               args: [ "--spec","cypress/e2e/objective2/**/*" ]
               env:
+                - name: CYPRESS_BASE_URL
+                  value: "https://gitops.internal-dev.wego-gke.weave.works"
                 - name: CYPRESS_WEGO_USERNAME
                   valueFrom:
                     secretKeyRef:
