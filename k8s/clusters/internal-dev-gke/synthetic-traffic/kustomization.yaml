@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ns.yaml
   - dashboard.yaml
-#  - objective2.yaml
+  - objective2.yaml
 #  - objective3.yaml
 #  - objective4-kr1.yaml
 #  - objective4-kr2.yaml

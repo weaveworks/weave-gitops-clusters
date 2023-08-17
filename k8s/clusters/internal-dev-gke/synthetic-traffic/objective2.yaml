@@ -25,7 +25,7 @@ spec:
               args: [ "--spec","cypress/e2e/objective2/**/*" ]
               env:
                 - name: CYPRESS_BASE_URL
-                  value: "https://gitops.internal-dev.wego-gke.weave.works"
+                  value: "http://clusters-service.flux-system.svc.cluster.local:8000"
                 - name: CYPRESS_WEGO_USERNAME
                   valueFrom:
                     secretKeyRef:
