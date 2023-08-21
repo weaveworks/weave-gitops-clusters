@@ -79,6 +79,9 @@ spec:
     enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
+    extraEnvVars:
+    - name: WEAVE_GITOPS_ENABLE_PROFILING
+      value: "true"
     enableExplorer: true
     templates-controller:
       enabled: true
