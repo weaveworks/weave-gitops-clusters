@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0.0"
+  required_version = "= 1.3.6"
 
   backend "gcs" {
     bucket = "weave-gitops-clusters-tf-state"
