@@ -28,6 +28,7 @@ locals {
     "department-corporate-it@weave.works",
     "department-dx-employees@weave.works",
     "department-engineering-employees@weave.works",
+    "department-product-employees@weave.works",
   ])
 }
 
