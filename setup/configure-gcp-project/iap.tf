@@ -26,6 +26,7 @@ locals {
     "team-${team}@weave.works"
   ], [
     "department-engineering-employees@weave.works",
+    "department-corporate-it@weave.works",
     "department-dx-employees@weave.works",
   ])
 }
