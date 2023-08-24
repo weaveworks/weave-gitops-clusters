@@ -23,7 +23,7 @@ Initially, you need to manually create an oAuth consent page and get the credent
 
 ## Access control
 
-Must have `Editor` or `Owner` on the project, to permit writing to the Terraform state bucket.
+Must have `Owner` on the project, to permit writing to the Terraform state bucket and to IAM/IAP.
 
 ```shell
 $ gcloud --project=weave-gitops-clusters auth application-default login
