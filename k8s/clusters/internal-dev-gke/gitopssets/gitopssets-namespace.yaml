@@ -2,6 +2,7 @@ apiVersion: templates.weave.works/v1alpha1
 kind: GitOpsSet
 metadata:
   name: api-namespaces
+  namespace: flux-system
   annotations:
     metadata.weave.works/description: "This GitOps Set shows off RBAC capabilities.  Here the service account does not have permissions to create namespace objects via the gitops sets controller, you have a lot of control over this powerful controller."
 spec:
@@ -9,9 +10,6 @@ spec:
     - list:
         elements:
           - name: public-api-v1
-          - name: public-api-legacy
-          - name: mobile-api-v1
-          - name: mobile-api-v2
   templates:
     - content:
         apiVersion: v1
