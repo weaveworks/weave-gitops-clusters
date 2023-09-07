@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: gitopssets
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: apps-enterprise
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./k8s/clusters/internal-dev-gke/gitopssets
+  prune: true
