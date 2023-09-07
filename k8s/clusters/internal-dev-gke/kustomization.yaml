@@ -16,3 +16,4 @@ resources:
 - quickstart.yaml
 - monitoring.yaml
 - synthetic-traffic.yaml
+- gitopssets.yaml
