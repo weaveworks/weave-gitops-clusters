@@ -41,7 +41,7 @@ spec:
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
-  name: podinfo
+  name: pipeline-controller
   namespace: default
 spec:
   interval: 5m0s
