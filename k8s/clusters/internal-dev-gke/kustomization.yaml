@@ -17,3 +17,4 @@ resources:
 - monitoring.yaml
 - synthetic-traffic.yaml
 - gitopssets.yaml
+- tenants.yaml
