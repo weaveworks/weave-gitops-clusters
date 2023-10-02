@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  labels:
+    toolkit.fluxcd.io/tenant: tenant1
+  name: tenant1
+spec: {}
+status: {}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: null
+  labels:
+    toolkit.fluxcd.io/tenant: tenant1
+  name: tenant1
+  namespace: tenant1
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: null
+  labels:
+    toolkit.fluxcd.io/tenant: tenant1
+  name: tenant1-service-account-cluster-admin
+  namespace: tenant1
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: tenant1
+  namespace: tenant1
+---
+apiVersion: pac.weave.works/v2beta2
+kind: Policy
+metadata:
+  creationTimestamp: null
+  labels:
+    toolkit.fluxcd.io/tenant: tenant1
+  name: weave.policies.tenancy.tenant1-allowed-application-deploy
+spec:
+  category: weave.categories.tenancy
+  code: |
+    package weave.tenancy.allowed_application_deploy
+
+    controller_input := input.review.object
+    violation[result] {
+        namespaces := input.parameters.namespaces
+        targetNamespace := controller_input.spec.targetNamespace
+        not contains_array(targetNamespace, namespaces)
+        result = {
+        "issue detected": true,
+        "msg": sprintf("using target namespace %v is not allowed", [targetNamespace]),
+        }
+    }
+    violation[result] {
+        serviceAccountName := controller_input.spec.serviceAccountName
+        serviceAccountName != input.parameters.service_account_name
+        result = {
+        "issue detected": true,
+        "msg": sprintf("using service account name %v is not allowed", [serviceAccountName]),
+        }
+    }
+    contains_array(item, items) {
+        items[_] = item
+    }
+  description: Determines which helm release and kustomization can be used in a tenant
+  how_to_solve: ""
+  id: weave.policies.tenancy.tenant1-allowed-application-deploy
+  mutate: false
+  name: tenant1 allowed application deploy
+  parameters:
+  - name: namespaces
+    required: false
+    type: array
+    value:
+    - tenant1
+  - name: service_account_name
+    required: false
+    type: string
+    value: tenant1
+  provider: kubernetes
+  severity: high
+  standards: []
+  tags:
+  - tenancy
+  targets:
+    kinds:
+    - HelmRelease
+    - Kustomization
+    labels: []
+    namespaces:
+    - tenant1
+status: {}
+---
