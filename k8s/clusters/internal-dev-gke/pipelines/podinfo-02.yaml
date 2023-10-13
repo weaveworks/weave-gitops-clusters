@@ -51,17 +51,17 @@ spec:
       # secretRef:
       #   name: hmac-secret
 ---
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Provider
-metadata:
-  name: podinfo-02-dev-githubdispatch
-  namespace: flux-system
-spec:
-  type: githubdispatch
-  address: https://github.com/weaveworks/weave-gitops-clusters
-  secretRef:
-    name: promotion-credentials
----
+# apiVersion: notification.toolkit.fluxcd.io/v1beta1
+# kind: Provider
+# metadata:
+#   name: podinfo-02-dev-githubdispatch
+#   namespace: flux-system
+# spec:
+#   type: githubdispatch
+#   address: https://github.com/weaveworks/weave-gitops-clusters
+#   secretRef:
+#     name: promotion-credentials
+# ---
 # apiVersion: notification.toolkit.fluxcd.io/v1beta1
 # kind: Alert
 # metadata:
