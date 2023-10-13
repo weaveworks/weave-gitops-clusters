@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hmac-secret
+type: Opaque
+data:
+  token: dndTM0Fkbm5VJmFUWk5HSQ==
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: podinfo-02-dev
+spec:
+  type: generic-hmac
+  address: https://promotions.gitops.internal-dev.wego-gke.weave.works/promotion/flux-system/podinfo-02/dev
+  secretRef:
+    name: hmac-secret
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: podinfo-02-dev
+spec:
+  eventSeverity: info
+  eventSources:
+  - kind: HelmRelease
+    name: podinfo
+    namespace: podinfo-02-dev
+  exclusionList:
+  - .*upgrade.*has.*started
+  - .*is.*not.*ready
+  - ^Dependencies.*
+  providerRef:
+    name: podinfo-02-dev
