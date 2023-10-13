@@ -9,7 +9,7 @@ You want to connect an existing kube cluster to Weave Gitops Enterprise via its 
 
 ## Connect leaf cluster to management cluster
 ### Step 1 - add base config to leaf cluster
-For conveniance and repeatabilty, there is a global [leaf cluster config](../k8s/config/leaf-cluster/) that can be added to the cluster directory for the leaf cluster (ie `k8s/clusters/leaf-01-gke`).  The config will look something like this:
+For convenience and repeatability, there is a global [leaf cluster config](../k8s/config/leaf-cluster/) that can be added to the cluster directory for the leaf cluster (ie `k8s/clusters/leaf-01-gke`).  The config will look something like this:
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -78,7 +78,7 @@ spec:
     name: leaf-01-kubeconfig
 ```
 
-Once all that is done and commited to `main` Flux should create all the necessary resources.  You can verify that everything is working via the cli or [in the ui](https://gitops.internal-dev.wego-gke.weave.works/cluster/details?clusterName=dev)
+Once all that is done and committed to `main` Flux should create all the necessary resources.  You can verify that everything is working via the cli or [in the ui](https://gitops.internal-dev.wego-gke.weave.works/cluster/details?clusterName=dev)
 
 ```
 ➜ k get gitopsclusters.gitops.weave.works
