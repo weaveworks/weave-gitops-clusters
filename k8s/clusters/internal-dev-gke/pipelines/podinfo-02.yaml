@@ -5,8 +5,8 @@ metadata:
   name: hmac-secret
   namespace: flux-system
 type: Opaque
-data:
-  hmac-key: dndTM0Fkbm5VJmFUWk5HSQ==
+stringData:
+  hmac-key: vwS3AdnnU&aTZNGI
 ---
 apiVersion: pipelines.weave.works/v1alpha1
 kind: Pipeline
