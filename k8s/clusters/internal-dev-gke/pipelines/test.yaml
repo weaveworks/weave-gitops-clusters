@@ -8,7 +8,7 @@ metadata:
   namespace: default
   annotations:
     templates.weave.works/create-request: "{\"repository_url\":\"https://github.com/weaveworks/weave-gitops-clusters\",\"head_branch\":\"wge-create-branch-wu7mq\",\"base_branch\":\"main\",\"title\":\"Create resource test\",\"description\":\"This PR creates a pipeline-view instance\",\"template_name\":\"pipeline-view\",\"parameter_values\":{\"APP_NAME\":\"test\",\"APP_NAMESPACE\":\"default\",\"DEV_CLUSTER_NAME\":\"dev\",\"DEV_CLUSTER_NAMESPACE\":\"dev\",\"PROD_CLUSTER_NAME\":\"prod\",\"PROD_CLUSTER_NAMESPACE\":\"prod\",\"RESOURCE_NAME\":\"test\",\"RESOURCE_NAMESPACE\":\"default\",\"TEST_CLUSTER_NAME\":\"test\",\"TEST_CLUSTER_NAMESPACE\":\"test\"},\"commit_message\":\"Create pipeline-view instance\",\"credentials\":{},\"template_namespace\":\"flux-system\",\"template_kind\":\"GitOpsTemplate\"}"
-    templates.weave.works/created-files: "{\"files\":[\"clusters/management/clusters/default/test.yaml\"]}"
+    templates.weave.works/created-files: "{\"files\":[\"k8s/clusters/internal-dev-gke/pipelines/test.yaml\"]}"
 spec:
   appRef:
     apiVersion: helm.toolkit.fluxcd.io/v2beta1
