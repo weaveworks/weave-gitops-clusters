@@ -4,6 +4,9 @@ metadata:
   name: pipelines
   namespace: flux-system
 spec:
+  kubeConfig:
+    secretRef:
+      name: prod-kubeconfig
   interval: 10m0s
   dependsOn:
     - name: clusters
