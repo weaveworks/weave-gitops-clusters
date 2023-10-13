@@ -16,3 +16,19 @@ spec:
             kind: GitopsCluster
             name: leaf-01
             namespace: default
+    - name: prod
+      targets:
+        - namespace: podinfo-01-prod
+          clusterRef:
+            kind: GitopsCluster
+            name: leaf-02
+            namespace: default
+  promotion:
+    manual: false
+    strategy:
+      pull-request:
+        type: github
+        url: https://github.com/weaveworks/weave-gitops-clusters
+        baseBranch: main
+        secretRef:
+          name: promotion-credentials
