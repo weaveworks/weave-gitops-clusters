@@ -4,3 +4,4 @@ resources:
 - leaf-01.yaml
 - leaf-02.yaml
 - vcluster/leaf-01.yaml
+- vcluster/leaf-02.yaml

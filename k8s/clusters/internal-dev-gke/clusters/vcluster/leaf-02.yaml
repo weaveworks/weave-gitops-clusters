@@ -1,0 +1,63 @@
+apiVersion: gitops.weave.works/v1alpha1
+kind: GitopsCluster
+metadata:
+  labels:
+    templates.weave.works/template-name: cluster-template-vcluster
+    templates.weave.works/template-namespace: default
+  name: leaf-02
+  namespace: default
+  annotations:
+    templates.weave.works/create-request: "{\"repository_url\":\"https://github.com/weaveworks/weave-gitops-clusters\",\"head_branch\":\"wge-create-branch-dzf7ae\",\"base_branch\":\"main\",\"title\":\"Create resource leaf-02\",\"description\":\"This PR creates a cluster-template-vcluster instance\",\"template_name\":\"cluster-template-vcluster\",\"parameter_values\":{\"CLUSTER_NAME\":\"leaf-02\",\"KUBERNETES_VERSION\":\"1.25.0\"},\"commit_message\":\"Create cluster-template-vcluster instance\",\"credentials\":{},\"template_namespace\":\"default\",\"template_kind\":\"GitOpsTemplate\"}"
+    templates.weave.works/created-files: "{\"files\":[\"clusters/management/clusters/default/leaf-02.yaml\"]}"
+spec:
+  capiClusterRef:
+    name: leaf-02
+
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  labels:
+    templates.weave.works/template-name: cluster-template-vcluster
+    templates.weave.works/template-namespace: default
+  name: leaf-02
+  namespace: default
+spec:
+  controlPlaneRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: VCluster
+    name: leaf-02
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: VCluster
+    name: leaf-02
+
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: VCluster
+metadata:
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    templates.weave.works/create-request: "{\"repository_url\":\"https://github.com/weaveworks/weave-gitops-clusters\",\"head_branch\":\"wge-create-branch-dzf7ae\",\"base_branch\":\"main\",\"title\":\"Create resource leaf-02\",\"description\":\"This PR creates a cluster-template-vcluster instance\",\"template_name\":\"cluster-template-vcluster\",\"parameter_values\":{\"CLUSTER_NAME\":\"leaf-02\",\"KUBERNETES_VERSION\":\"1.25.0\"},\"commit_message\":\"Create cluster-template-vcluster instance\",\"credentials\":{},\"template_namespace\":\"default\",\"template_kind\":\"GitOpsTemplate\"}"
+    templates.weave.works/created-files: "{\"files\":[\"clusters/management/clusters/default/leaf-02.yaml\"]}"
+  labels:
+    templates.weave.works/template-name: cluster-template-vcluster
+    templates.weave.works/template-namespace: default
+  name: leaf-02
+  namespace: default
+spec:
+  controlPlaneEndpoint:
+    host: ""
+    port: 0
+  helmRelease:
+    chart:
+      name: ""
+      repo: ""
+      version: ""
+    values: |-
+      syncer:
+        extraArgs:
+        - --tls-san=leaf-02.default.svc
+      service:
+        type: NodePort
+  kubernetesVersion: 1.25.0
