@@ -10,7 +10,6 @@ spec:
     name: flux-system
   path: ./k8s/config/leaf-cluster
   prune: true
-  validation: client
   postBuild:
     substitute:
       clusterName: leaf-01
