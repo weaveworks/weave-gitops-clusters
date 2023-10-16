@@ -21,7 +21,7 @@ spec:
         - namespace: podinfo-01-prod
           clusterRef:
             kind: GitopsCluster
-            name: prod
+            name: leaf-02
             namespace: default
   promotion:
     manual: false
