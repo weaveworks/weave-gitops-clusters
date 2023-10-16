@@ -24,26 +24,26 @@ spec:
         - namespace: podinfo-02-dev
           clusterRef:
             kind: GitopsCluster
-            name: dev
-            namespace: flux-system
+            name: leaf-01
+            namespace: default
     - name: test
       targets:
         - namespace: podinfo-02-qa
           clusterRef:
             kind: GitopsCluster
-            name: dev
-            namespace: flux-system
+            name: leaf-01
+            namespace: default
         - namespace: podinfo-02-perf
           clusterRef:
             kind: GitopsCluster
-            name: dev
-            namespace: flux-system
+            name: leaf-01
+            namespace: default
     - name: prod
       targets:
         - namespace: podinfo-02-prod
           clusterRef:
             kind: GitopsCluster
-            name: prod
+            name: leaf-02
             namespace: default
   promotion:
     strategy:
