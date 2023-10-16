@@ -13,7 +13,6 @@ resources:
 - terraform.yaml
 - image-automation.yaml
 - pipelines.yaml
-- pipelines-vcluster.yaml
 - quickstart.yaml
 - monitoring.yaml
 - synthetic-traffic.yaml
