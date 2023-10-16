@@ -44,6 +44,9 @@ tf-plan: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Run a plan
 tf-apply: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Terraform apply (you'll be prompted to confirm changes)
 	terraform apply -var-file=vars/$(ENV).tfvars
 
+tf-destroy: .terraform/$(ENV).env $(TERRAFORM_FILES) ## Terraform destroy (you'll be prompted to confirm changes)
+	terraform destroy -var-file=vars/$(ENV).tfvars
+
 tf-lock:
 	terraform providers lock \
 		-platform=windows_amd64 \

@@ -23,7 +23,6 @@ and run: mdtoc -inplace README.md
 
 The bulk of the important configuration is in these two directories:
 * [gke-cluster](gke-cluster/) -- create [Google GKE clusters](https://cloud.google.com/kubernetes-engine/)
-* [eks-cluster](eks-cluster/) -- create [AWS EKS clusters](https://aws.amazon.com/eks/) [coming soon!]
 
 The [setup](setup/) directory contains small bits of terraform for shared resources
 (e.g. container registries, terraform state buckets). You probably don't need to
