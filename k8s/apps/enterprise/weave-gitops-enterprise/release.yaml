@@ -85,9 +85,12 @@ spec:
     enableExplorer: true
     templates-controller:
       enabled: true
-    #### Metrics - Prometheus metrics configuration
-    metrics:
-      # Enables metrics generation and prometheus endpoint
-      enabled: true
+    monitoring:
+      enabled: true # enable it if you want to expose a monitoring server
       service:
-        port: 8080
+        name: monitoring
+        port: 8080 # port to expose the monitoring server
+      metrics:
+        enabled: true # enable it to expose a prometheus metrics endpoint in `/metrics`
+      profiling:
+        enabled: true # enable it to expose a pprof debug endpoint  `/debug/pprof`
