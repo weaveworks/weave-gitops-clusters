@@ -90,10 +90,4 @@ spec:
       # Enables metrics generation and prometheus endpoint
       enabled: true
       service:
-        # -- Port to start the metrics exporter on
         port: 8080
-        # -- Annotations to set on the service
-        annotations:
-          prometheus.io/scrape: "true"
-          prometheus.io/path: "/metrics"
-          prometheus.io/port: "{{ .Values.metrics.service.port }}"

@@ -10,3 +10,6 @@ spec:
     name: flux-system
   path: ./k8s/clusters/internal-dev-gke/monitoring
   prune: true
+  dependsOn:
+    - name: quickstart
+
