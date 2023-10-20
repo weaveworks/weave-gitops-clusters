@@ -18,3 +18,4 @@ resources:
 - synthetic-traffic.yaml
 - gitopssets.yaml
 - tenants.yaml
+- podinfo.yaml
