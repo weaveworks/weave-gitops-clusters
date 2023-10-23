@@ -15,6 +15,9 @@ metadata:
   name: podinfo
   namespace: default
 spec:
+  kubeConfig:
+    secretRef:
+      name: leaf-01-kubeconfig
   interval: 10m
   targetNamespace: default
   sourceRef:
