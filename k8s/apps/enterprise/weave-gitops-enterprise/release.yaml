@@ -79,9 +79,6 @@ spec:
     enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
-    extraEnvVars:
-    - name: WEAVE_GITOPS_ENABLE_PROFILING
-      value: "true"
     explorer:
       enabled: true
       enabledFor: # list of components that can be enabled or disabled
