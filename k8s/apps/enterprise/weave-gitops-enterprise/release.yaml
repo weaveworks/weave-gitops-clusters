@@ -82,7 +82,13 @@ spec:
     extraEnvVars:
     - name: WEAVE_GITOPS_ENABLE_PROFILING
       value: "true"
-    enableExplorer: true
+    explorer:
+      enabled: true
+      enabledFor: # list of components that can be enabled or disabled
+#        - applications
+        - sources
+#        - gitopssets
+        - templates
     templates-controller:
       enabled: true
     monitoring:
