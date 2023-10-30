@@ -84,7 +84,7 @@ spec:
       enabledFor: # list of components that can be enabled or disabled
 #        - applications
         - sources
-#        - gitopssets
+        - gitopssets
         - templates
     templates-controller:
       enabled: true
