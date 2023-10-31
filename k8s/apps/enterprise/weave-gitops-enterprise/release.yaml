@@ -85,7 +85,7 @@ spec:
 #        - applications
         - sources
         - gitopssets
-        - templates
+#        - templates
     templates-controller:
       enabled: true
     monitoring:
