@@ -24,7 +24,7 @@ spec:
         value: "true"
     image:
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
-      tag: 1698766434-66aecca58cdeaa21b261394c71371f27290d3bed # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
+      tag: 1698777868-595df061f06259ffeb23ebd33cb75fa189aafbb2 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
     adminUser:
       create: true
       username: test-admin
