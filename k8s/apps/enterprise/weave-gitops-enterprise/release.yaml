@@ -79,9 +79,6 @@ spec:
     enablePipelines: true
     enableTerraformUI: true
     enableRunUI: true
-    extraEnvVars:
-      - name: WEAVE_GITOPS_FEATURE_TELEMETRY
-        value: "force"
     explorer:
       enabled: true
       enabledFor: # list of components that can be enabled or disabled
