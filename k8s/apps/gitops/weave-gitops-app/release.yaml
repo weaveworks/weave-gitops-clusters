@@ -19,6 +19,9 @@ spec:
       retries: 3
   values:
     # cf. https://github.com/weaveworks/weave-gitops/blob/main/charts/gitops-server/values.yaml
+    envVars:
+      - name: WEAVE_GITOPS_FEATURE_TELEMETRY
+        value: "true"
     image:
       repository: europe-west1-docker.pkg.dev/weave-gitops-clusters/weave-gitops/gitops-server # {"$imagepolicy": "flux-system:weave-gitops-app:name"}
       tag: 1698921521-b9e6f12f92a7ebf4c060e6c325bc42db4db64d54 # {"$imagepolicy": "flux-system:weave-gitops-app:tag"}
