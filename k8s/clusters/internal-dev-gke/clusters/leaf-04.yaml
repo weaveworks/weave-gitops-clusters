@@ -55,6 +55,9 @@ spec:
       repo: ""
       version: ""
     values: |-
+      syncer:
+        extraArgs:
+        - --tls-san=leaf-04.default.svc
       service:
         type: NodePort
   kubernetesVersion: 1.25.0
