@@ -25,7 +25,7 @@ spec:
             namespace: default
     - name: prod-west
       targets:
-        - namespace: podinfo-01-prod-west
+        - namespace: podinfo-01-prod-east
           clusterRef:
             kind: GitopsCluster
             name: leaf-04
