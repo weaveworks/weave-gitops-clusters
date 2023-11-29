@@ -28,7 +28,7 @@ spec:
         - namespace: podinfo-01-prod-west
           clusterRef:
             kind: GitopsCluster
-            name: leaf-03
+            name: leaf-02
             namespace: default
 
   promotion:
