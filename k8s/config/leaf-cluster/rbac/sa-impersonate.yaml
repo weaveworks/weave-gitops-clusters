@@ -47,3 +47,8 @@ rules:
   - apiGroups: ["helm.toolkit.fluxcd.io"]
     resources: ["helmreleases"]
     verbs: ["get", "list", "patch"]
+  - apiGroups: [ "" ]
+    resources: [ "serviceaccounts" ]
+    verbs: [ "impersonate" ]
+    resourceNames:
+      - "collector"
