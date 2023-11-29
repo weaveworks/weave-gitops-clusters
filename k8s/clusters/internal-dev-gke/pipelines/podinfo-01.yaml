@@ -23,6 +23,14 @@ spec:
             kind: GitopsCluster
             name: leaf-02
             namespace: default
+    - name: prod-west
+      targets:
+        - namespace: podinfo-01-prod-west
+          clusterRef:
+            kind: GitopsCluster
+            name: leaf-03
+            namespace: default
+
   promotion:
     manual: false
     strategy:
