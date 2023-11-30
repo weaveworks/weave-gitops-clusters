@@ -16,19 +16,12 @@ spec:
             kind: GitopsCluster
             name: leaf-01
             namespace: default
-    - name: prod-west
+    - name: prod
       targets:
-        - namespace: podinfo-01-prod-west
+        - namespace: podinfo-01-prod
           clusterRef:
             kind: GitopsCluster
-            name: leaf-03
-            namespace: default
-    - name: prod-east
-      targets:
-        - namespace: podinfo-01-prod-east
-          clusterRef:
-            kind: GitopsCluster
-            name: leaf-04
+            name: leaf-02
             namespace: default
   promotion:
     manual: false
