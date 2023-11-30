@@ -81,6 +81,8 @@ spec:
     enableRunUI: true
     explorer:
       enabled: true
+      cleaner:
+        disabled: false
       enabledFor: # list of components that can be enabled or disabled
 #        - applications
         - sources
