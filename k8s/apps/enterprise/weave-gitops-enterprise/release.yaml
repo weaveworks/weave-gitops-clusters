@@ -21,6 +21,9 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    extraEnvVars:
+      - name: WEAVE_GITOPS_FEATURE_GITOPS_RUNTIME
+        value: "true"
     service:
       annotations:
         beta.cloud.google.com/backend-config: '{"default": "enterprise-lb-backend-config"}'
