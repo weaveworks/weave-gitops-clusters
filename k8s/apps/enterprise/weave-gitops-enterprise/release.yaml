@@ -21,7 +21,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
-    extraEnvVars:
+    envVars:
       - name: WEAVE_GITOPS_FEATURE_GITOPS_RUNTIME
         value: "true"
     service:
